@@ -1,0 +1,34 @@
+#topConten{
+	width:950px;
+	height:400px;
+	margin:auto;
+	/*border: 1px solid blue;*/
+	
+}
+#topConten .contentTitle{
+	height:40px;
+	text-align:center;
+	font-weight:bold;
+	/*border:1px solid red;*/
+}
+
+#buttomContent{
+	width:950px;
+	height:400px;
+	margin:auto;
+	/*border: 1px solid blue;*/
+}
+#buttomContent .panel{
+	width:473px;
+	height:400px;
+	float:left;
+	margin:auto;
+	text-align:center;
+	/*border: 1px solid red;*/
+}
+#buttomContent .panel .panelChartTitle{
+	height:40px;
+	teat-align:center;
+	font-weight:bold;
+	/*border:1px solid blue;*/
+}

@@ -1,0 +1,25 @@
+#content{
+	width:950px;
+	height:670px;
+	margin:auto;
+	/*border: 1px solid red;*/
+	
+}
+#contantBody{
+	box-shadow: 5px 5px 3px #888888;
+	border: 1px solid gray;
+}
+#content .contentPanel{
+	width:473px;
+	height:600px;
+	float:left;
+	border-right:1px solid gray;
+	/*border: 1px solid yellow;*/
+}
+#content .contentTitleChart{
+	width:948px;
+	height:60px;
+	margin:auto;
+	text-align:center;
+	/*border: 1px solid yellow;*/
+}

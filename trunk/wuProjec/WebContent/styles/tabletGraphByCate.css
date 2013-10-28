@@ -1,0 +1,344 @@
+/*ความละเอียด 600 x 1024 พิกเซล*/
+*{
+	font-family:Tahoma;
+	font-size:18px;
+}
+body{
+	padding:0px;
+	margin:0px;
+	background:white;
+	
+	
+	
+}
+#tabletContent{
+	
+	width:auto;
+	height:auto;
+	/*border:1px solid #cccccc;*/
+}
+#tabletContent #tabletHeadArea{
+	width:auto;
+	height:auto;
+	/*border:1px solid #cccccc;*/
+}
+#tabletContent #tabletHeadArea #tabletHead{
+	width:1024px;
+	background:#8B4513;
+	margin:auto;
+	padding:2px;	
+	border-radius:5px;
+	color:white;
+	font-weight:bold;
+	margin-bottom:2px;
+	
+	
+    /*font-family: 'BebasRegular';*/
+    font-size: 25px;
+    /*text-align: center;*/
+    text-shadow: 2px 2px 2px #EEEEEE;
+    text-transform: uppercase;
+    word-spacing: 5px;
+    
+}
+#tabletContent #tabletHeadArea #tabletHead #boxL{
+	float:left;
+	width:450px;
+	padding:2px;
+	boder:1px solid #cccccc;
+}
+#tabletContent #tabletHeadArea #tabletHead #boxL #button{
+	width:70px;
+	float:left;
+}
+
+#tabletContent #tabletHeadArea #tabletHead #boxL #text{
+	width:300px;
+	float:left;
+	padding:5px;
+}
+#tabletContent #tabletHeadArea #tabletHead #boxR{
+	float:left;
+	width:200px;
+	padding:5px;
+	boder:1px solid #cccccc;
+}
+#tabletContent #tabletHeadArea #tabletHead #boxR .ball{
+	width:15px;
+	height:15px;
+	border-radius:100%;
+	background:white;
+	float:left;
+	margin-left:2px;
+}
+#tabletContent #tabletCotentArea {
+	width:auto;
+	height:auto;
+	/*border:1px solid red;*/
+}
+#tabletContent #tabletCotentArea #tabletContent{
+	
+	width:1024px;
+	height:550px;
+	/*background:#FEEEBD;*/
+	padding:2px;
+	margin:auto;	
+	
+}
+#tabletContent #tabletCotentArea #tabletContent #leftMenu{
+	
+	left:-250px;
+	height:300px;
+	background:black;
+	float:left;
+	position: absolute;
+	z-index:21;
+	opacity:0.95;
+		
+}
+
+#tabletContent #tabletCotentArea #tabletContent #leftMenu #boxContent{
+	position: absolute;
+	width:250px;
+	height:auto;
+}
+#tabletContent #tabletCotentArea #tabletContent #leftMenu #boxContent #boxTitle{
+	
+	background:#8B4513;
+	width:250px;
+	padding-top:5px;
+	padding-button:5px;
+	
+	font-weight:bold;
+	
+}
+#tabletContent #tabletCotentArea #tabletContent #leftMenu #boxContent #boxTitle #txt{
+	padding:5px;
+	color:white;
+}
+#tabletContent #tabletCotentArea #tabletContent #leftMenu #boxContent ul{
+	position: absolute;
+	width:250px;
+	padding:0px;
+	margin:0px;
+	
+}
+#tabletContent #tabletCotentArea #tabletContent #leftMenu #boxContent ul li{
+	background:#FEEEBD;
+	display:block;
+	border-bottom:1px solid #cccccc;
+	
+}
+#tabletContent #tabletCotentArea #tabletContent #leftMenu #boxContent ul li a{
+	display:block;
+	text-decoration:none;
+	color:black;
+	padding:5px;
+	
+}
+#tabletContent #tabletCotentArea #tabletContent #leftMenu #boxContent ul li a:hover{
+	background:white;
+	display:block;
+	
+}
+
+
+
+
+#tabletContent #tabletCotentArea #tabletContent #contentGraph{
+	width:1024px;
+	height:550px;
+	background:white;
+	
+}
+#tabletContent #tabletCotentArea #tabletContent #contentGraph #settingArea{
+	
+	position:relative;
+	z-index:20;
+	width:1015px;
+	background:red;
+}
+#tabletContent #tabletCotentArea #tabletContent #contentGraph #settingArea .setting{
+	padding:15px;
+	float:right;
+	
+	background:url("../images/ui-bg_gloss-wave_60_fece2f_500x100.png") repeat-x scroll 50% 50% #FECE2F;
+	border-radius:8px;
+	cursor:pointer;
+	border: 1px solid #D19405;
+    color: #4C3000;
+    font-weight: bold;
+	/*border-color:#8B4513;*/
+	
+}
+#tabletContent #tabletCotentArea #tabletContent #contentGraph .graphTop{
+	height:500px;
+	border-bottom:1px solid #cccccc;
+	border-radius:1px;
+	margin-bottom: 2px;
+	padding:2px;
+	padding-left:5px;
+}
+#tabletContent #tabletCotentArea #tabletContent #contentGraph.graphBottom{
+	margin-top:2px;
+	border-radius:1px;
+
+}
+#tabletContent #tabletCotentArea #tabletContent #contentGraph .graphBottom .graphDetail{
+	width:640px;
+	padding:5px;
+	float:left;
+}
+#tabletContent #tabletCotentArea #tabletContent #contentGraph .graphBottom .graphAddFav{
+	width:235px;
+	float:right;
+}
+button.addMyView{
+	padding:5px;
+}
+button.hideShow{
+	width:50px;
+	padding:5px;
+}
+
+
+
+
+#setParam{
+	width:480px;
+	height:260px;
+	position:absolute;
+	z-index:20;
+	display:none;
+	background:white;
+	opacity:1;
+	border-radius:5px;
+	border:1px solid #D19405;
+	padding:5px;
+	left: 240px;
+	
+	
+}
+#contentGraph{
+	
+	width:1010px;
+	hegiht:auto;
+}
+
+.setParamArea{
+	
+}
+.setParamArea .setParamHeader{
+	width:auto;
+	margin-bottom:5px;
+	
+	
+	
+}
+.setParamArea .setParamHeader .text{
+	padding:6px;
+	/*background:#FECE2F;*/
+	font-weight:bold;
+	border-radius:5px;
+	border:1px solid #D19405;
+	background: url("../images/ui-bg_gloss-wave_60_fece2f_500x100.png") repeat-x scroll 50% 50% #FECE2F;
+	
+}
+.setParamArea .setParam{
+	width:auto;
+	height:auto;
+	
+	
+}
+
+.setParamArea .btnArea{
+	width:auto;
+	
+}
+.setParamArea .btnArea .btn{
+	margin-left:93px;
+	padding:5px;
+}
+
+
+.ball{
+	border-radius:100%;
+	width:30px;
+	height:30px;
+	background:white;
+}
+.ballGreen{
+	border-radius:100%;
+	width:30px;
+	height:30px;
+	background:green;
+}
+.ballRed{
+	border-radius:100%;
+	width:30px;
+	height:30px;
+	background:red;
+}
+div#selectFav ul{
+	margin:0px;
+	padding:5px;
+}
+
+div#selectFav ul li{
+	
+	height:17px;
+	list-style-type: none;
+	display:block;
+	
+	/*background:blue;*/
+	
+	
+}
+#selectFav ul li .slotFavName a{
+    display:block;
+	border-bottom:1px solid white;
+	width:320px;
+	padding:5px;
+	text-decoration:none;
+}
+#selectFav ul li .slotFavName a:hover{
+	display:block;
+	background:white;
+}
+
+
+#selectFav ul li .statusFav{
+	border-radius:100%;
+	width:25px;
+	height:25px;
+	/*background:green;*/
+	display:show;
+	float:left;
+
+}
+#selectFav ul li .slotFavName{
+	
+	float:left;
+	margin-left:5px;
+	
+}
+.removeMyView{
+	padding:5px;
+}
+.ui-button{
+	padding:5px;
+}
+
+#listCate{
+	padding:6px;
+	/*background:#FECE2F;*/
+	font-weight:bold;
+	width:5px;
+	
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+	
+	border:1px solid #D19405;
+	background: url("../images/ui-bg_gloss-wave_60_fece2f_500x100.png") repeat-x scroll 50% 50% #FECE2F;
+	
+}

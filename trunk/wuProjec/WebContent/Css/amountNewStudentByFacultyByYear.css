@@ -1,0 +1,20 @@
+#content{
+	width:950px;
+	height:920px;
+	margin:auto;
+	/*border: 1px solid blue;*/
+	
+}
+#content .contentPanel{
+	width:948px;
+	height:420px;
+	float:left;
+	/*border: 1px solid orange;*/
+}
+#content .contentTitleChart{
+	width:948px;
+	height:20px;
+	margin:auto;
+	text-align:center;
+	/*border: 1px solid red;*/
+}
