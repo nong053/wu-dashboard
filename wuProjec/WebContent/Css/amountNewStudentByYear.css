@@ -1,0 +1,39 @@
+#topContent{
+	width:950px;
+	height:400px;
+	/*border:1px solid red;*/
+}
+
+#topContent .panel{
+	float:left;
+	width:473px;
+	height:400px;
+	/*border:1px solid red;*/
+	
+}
+#topContent .panel .panelTitleChart{
+	height:40px;
+	margin:auto;
+	text-align:center;
+	font-weight:bold;
+	/*border:1px blue solid;*/
+}
+
+#centerContent{
+	width:950px;
+	height:auto;
+	/*border:1px red solid;*/
+}
+
+#buttomContent{
+	width:950px;
+	height:auto;
+	/*border:1px solid red;*/
+}
+#contentTitleChart{
+	height:40px;
+	margin:auto;
+	text-align:center;
+	font-weight:bold;
+	/*border:1px blue solid;*/
+}

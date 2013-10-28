@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//WebContent/Controller/amountNewStudentByYear.js=UTF-8
+encoding//WebContent/Controller/main.js=UTF-8
+encoding//WebContent/Controller/percentNewStudentByYear.js=UTF-8
+encoding//WebContent/Model/newStudentByYearByFaculty.jsp=UTF-8
+encoding//WebContent/Model/newStudentByYearByFacultyByMajor.jsp=UTF-8
+encoding//WebContent/Model/parameter.jsp=UTF-8
+encoding//WebContent/View/amountNewStudentByFacultyByYear.html=UTF-8
+encoding//WebContent/View/amountNewStudentByRegion.html=UTF-8
+encoding//WebContent/View/amountNewStudentByType.html=UTF-8
+encoding//WebContent/View/amountNewStudentByYear.html=UTF-8
+encoding//WebContent/View/percentNewStudentByYear.html=UTF-8
+encoding//src/wu/ar/service/wuService.java=UTF-8
+encoding/<project>=UTF-8
