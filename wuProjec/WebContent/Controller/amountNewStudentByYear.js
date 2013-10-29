@@ -8,6 +8,9 @@ $("hr#line-3").hide();
 /* START: Generate barChart(Chart-01) by Kendo */
 function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData) {
     $("#newStudentByYearChart").kendoChart({
+    	chartArea: {
+    		background: ""
+    	},
     	legend: {
             position: "bottom",
             labels: {
@@ -52,7 +55,6 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
         	$(".asOfYear").text(e.category); //Display asOfYear on Chart Title
         	
         	/* Display Chart-02 by Change select option */
-
         	$("#selectTop").live("change",function(){
 	        	topTenHighSchoolByYearFn(e.category,$(this).val());
         	}).trigger("change");
@@ -65,6 +67,16 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
         	$(".categoryParam").remove();
         	$("body").append("<input type=\"hidden\" id=\"categoryYear\" name=\"categoryYear\" class=\"categoryParam\" value="+e.category+">");
         	
+        	/* Show Tabs 2-5 */
+        	$("[href='#tabs-2']").show();
+        	$("[href='#tabs-3']").show();
+        	$("[href='#tabs-4']").show();
+        	$("[href='#tabs-5']").show();
+        	
+        	/*Hide Chart04(newStudentByYearByFacultyByMajorChart)*/
+        	$(".titleCompareMajor").hide();
+        	$("hr#line-3").hide();
+        	$("#newStudentByYearByFacultyByMajorChart").hide();
         }
     });
 }
@@ -73,6 +85,9 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
 /* START: Generate Pie Chart(Chart-02) By Kendo */ 
 function topTenHighSchoolChart(objData) {
     $("#topTenHighSchoolChart").kendoChart({
+    	chartArea: {
+    		background: ""
+    	},
         legend: {
         	position: "bottom",
             labels: {
@@ -81,7 +96,7 @@ function topTenHighSchoolChart(objData) {
             }
         },
         chartArea: {
-            background: ""
+            background: "none"
         },
         seriesDefaults: {
             labels: {
@@ -109,6 +124,9 @@ function topTenHighSchoolChart(objData) {
 /* START: Generate BarChat(Chart-03) By Kendo */ 
 function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesColumnData) {
     $("#newStudentByYearByFacultyChart").kendoChart({
+    	chartArea: {
+    		background: ""
+    	},
         legend: {
             visible: false
         },
@@ -126,7 +144,7 @@ function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesC
         valueAxis: {
             max: 600,
             line: {
-                visible: false
+                visible: true
             },
             minorGridLines: {
                 visible: true
@@ -156,6 +174,7 @@ function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesC
         	//alert(e.category);
         	var paramYear = $(".categoryParam").val();
         	$(".titleCompareMajor").show();
+        	$("#newStudentByYearByFacultyByMajorChart").show();
         	newStudentByYearByFacultyByMajorFn(paramYear,e.category);
         	$("hr#line-3").show();
         }
@@ -166,6 +185,9 @@ function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesC
 /* START: Generate BarChat(Chart-04) By Kendo */ 
 function newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLineData, objcategoriesData) {
     $("#newStudentByYearByFacultyByMajorChart").kendoChart({
+    	chartArea: {
+    		background: ""
+    	},
         legend: {
         	position: "bottom",
             labels: {
@@ -186,7 +208,7 @@ function newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLin
         valueAxis: {
             max: 200,
             line: {
-                visible: false
+                visible: true
             },
             minorGridLines: {
                 visible: true
@@ -210,7 +232,7 @@ function newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLin
 /* END: Generate BarChat(Chart-04) By Kendo */ 
 
 
-/* START: call ajax for create graph(02) topTenHighSchoolChart */
+/* START: call ajax for create chart(02) topTenHighSchoolChart */
 var topTenHighSchoolByYearFn = function(paramYear,arSelectTop){
 	$.ajax({
 		url: "../Model/topTenHighSchoolByYear.jsp",
@@ -244,7 +266,7 @@ var topTenHighSchoolByYearFn = function(paramYear,arSelectTop){
 		}
 	});
 };
-/* END: call ajax for create graph(02) topTenHighSchoolChart */
+/* END: call ajax for create chart(02) topTenHighSchoolChart */
 	
 ///* START: Event chage dropdownlist selectTop */
 //$("#selectTop").live("change",function(){
@@ -254,7 +276,7 @@ var topTenHighSchoolByYearFn = function(paramYear,arSelectTop){
 ///* END: Event chage dropdownlist selectTop */
 
 
-/* START: Call Ajax for create graph(03) newStudentByYearByFacultyChart */
+/* START: Call Ajax for create chart(03) newStudentByYearByFacultyChart */
 var newStudentByYearByFacultyFn = function(paramYear){
 	$.ajax({
 		url: "../Model/newStudentByYearByFaculty.jsp",
@@ -297,10 +319,10 @@ var newStudentByYearByFacultyFn = function(paramYear){
 		}
 	});
 };
-/* END: Call Ajax for create graph(03) newStudentByYearByFacultyChart */
+/* END: Call Ajax for create chart(03) newStudentByYearByFacultyChart */
 
 
-/* START: Call Ajax for create graph(04) newStudentByYearByFacultyChart */
+/* START: Call Ajax for create chart(04) newStudentByYearByFacultyChart */
 	var newStudentByYearByFacultyByMajorFn = function(paramYear,paramFacuName){
 		$.ajax({
 			url: "../Model/newStudentByYearByFacultyByMajor.jsp",
@@ -340,4 +362,4 @@ var newStudentByYearByFacultyFn = function(paramYear){
 			}
 		});
 	};
-/* END: Call Ajax for create graph(04) newStudentByYearByFacultyChart */
+/* END: Call Ajax for create chart(04) newStudentByYearByFacultyChart */

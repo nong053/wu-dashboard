@@ -43,10 +43,10 @@ body{
 	padding:0px;
 	/*border:1px #cccccc solid;*/
 }
-#body #header #paramArea #submit{
-	width:150px;
+#body #header #submit{
+	width:200px;
 	float:left;
-	padding:3px;
+	padding:0px;
 	text-align:right;
 	/*border:1px #cccccc solid;*/
 	
