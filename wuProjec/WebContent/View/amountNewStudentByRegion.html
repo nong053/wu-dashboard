@@ -1,24 +1,30 @@
+<script src="../jvectormap/js/jquery-jvectormap-1.2.2.min.js"> </script>
+<script src="../jvectormap/js/jquery-jvectormap-th-mill-en.js"> </script>
+<script src="../jvectormap/js/jquery-jvectormap-th-merc-en.js"> </script>
+
 <link class="style" href="../Css/amountNewStudentByRegion.css" rel="stylesheet" type="text/css">
 <script src="../Controller/amountNewStudentByRegion.js"></script>
 
 <div id="content">
-	<div class="contentTitleChart">
-		จำนวนนักศึกษาใหม่ระดับปริญญาตรีตามพิ้นที่ ปีการศึกษา 2556 <br/> นักศึกษาเช้าใหม่ทั้งหมด 20,003 คน <br/> (เลื่อน Mouse ไปยังจังหวัดที่ต้องการรายละเอียด ) <br/>
-	</div>
 	<div id="contantBody">
-	<div class="contentPanel">
-		<img src="../thai_map.jpg" style="width:473px; height:600px; margin:auto;">
-	</div>
-	
-	<div class="contentPanel">
-		<!-- Description of table -->
-		<div id="" style="height:30px; font:14px Tahoma;"> จังหวัดนครศรีธรรมราช <br/> </div>
-		
-		<!-- Start: Table Amount New Student by Region -->
-		<div id="gridAmountByRegion" style="width:100%; height:550px; margin:auto;"> 
-			<div id="dataGrid"> </div>
+		<div class="contentTitleChart">
+			<br/>จำนวนนักศึกษาใหม่ระดับปริญญาตรีตามพิ้นที่ ปีการศึกษา 2556 <br/> นักศึกษาเช้าใหม่ทั้งหมด 20,003 คน <br/> (เลื่อน Mouse ไปยังจังหวัดที่ต้องการรายละเอียด ) <br/>
 		</div>
-	</div>
-	<br style="clear:both">
+		
+		<div class="contentPanelL">
+			<!-- <img src="../thai_map.jpg" style="width:473px; height:600px; margin:auto;"> -->
+			<div id="thaiMap" class="jvectormap jvectormap-mill" data-projection="mill" data-name="th_mill_en"> </div>
+		</div>
+		
+		<div class="contentPanelR">
+			<!-- Description of table -->
+			<div id="" style="height:30px; font:14px Tahoma;"> จังหวัดนครศรีธรรมราช <br/> </div>
+			
+			<!-- Start: Table Amount New Student by Region -->
+			<div id="gridAmountByRegion" style="width:100%; height:550px; margin:auto;"> 
+				<div id="dataGrid"> </div>
+			</div>
+		</div>
+		<br style="clear:both">
 	</div>
 </div>

@@ -184,13 +184,13 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
        };
 /* END: Call Ajax for create graph(01) newStudentByType */
        
-/* START: Call Ajax for create BarChart(02) newStudentByType */
-       var avgGpaByfacuByYearFn = function(TypeName, facuName){
+/* START: Call Ajax for create BarChart(02) avgGpaByfacuByYear */
+       var avgGpaByfacuByYearFn = function(TypeId, facuId){
     	 $.ajax({
     		 url: "../Model/avgGpaByfacuByYear.jsp",
-    		 type: "post",
+    		 type: "get", //Parameter is Name must be type:"post".
     		 dataType: "json",
-    		 data:{"paramYear":$("#embParamYear").val(), "facuName":facuName, "TypeName":TypeName},
+    		 data:{"paramYear":$("#embParamYear").val(), "facuId":facuId, "TypeName":TypeId},
     		 success:function(data){
     			 //alert(data);
  				var seriesData="";
@@ -216,7 +216,7 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
     		 }    	 		
     	 });  
        };
-/* END: Call Ajax for create BarChart(02) newStudentByType */
+/* END: Call Ajax for create BarChart(02) avgGpaByfacuByYear */
        
 /* START: Call Ajax for create PieChart(03) newStudentByMajor*/
        var amountNewStudentByMajorFn = function(typeName, facuName){
