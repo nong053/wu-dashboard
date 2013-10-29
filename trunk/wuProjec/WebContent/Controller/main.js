@@ -121,7 +121,7 @@ $(document).ready(function(){
 				$("#tabs-4").html(data);
 					
 				dataGridProvinceFn();
-
+				createThailandMap();
 			}
 		});
 	});

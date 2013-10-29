@@ -1,4 +1,25 @@
+/* ########################## Start generate code for amountNewStudentByRegion Map. ########################## */
+/* Generate Thailand map by jVectorMap */
+var createThailandMap = function(){
+	$("#thaiMap").vectorMap({
+		map: "th_mill_en",
+		backgroundColor: 'transparent',
+		regionStyle: {
+			initial: {
+				fill: '#8d8d8d'
+				}
+		},
+		onRegionClick:function (event, code, region){
+			alert(code);
+//	       console.log('Name: ' + json['properties'][code]['name'] + ', color: ' + json['properties'][code]['color']);
+	    }
+	});
+};
+/* ########################## Start generate code for amountNewStudentByRegion Map. ########################## */
 
+
+
+/* ########################## Start generate code for amountNewStudentByRegion grid. ########################## */
 var $title =[
              {
                  field: "Field1",
@@ -141,3 +162,4 @@ var setDataGrid = function(gridName,objDataGrid1,RecordTotal){
 	});
 };
 /* END: Set Kendo Grid*/
+/* ########################## Start generate code for amountNewStudentByRegion grid. ########################## */
