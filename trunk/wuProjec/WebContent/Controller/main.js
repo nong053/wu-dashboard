@@ -119,9 +119,10 @@ $(document).ready(function(){
 				//alert(data);
 				$(".style").remove();
 				$("#tabs-4").html(data);
-					
-				dataGridProvinceFn();
-				createThailandMap();
+				
+				createThailandMap();					
+//				dataGridProvinceFn($("#paramYear").val(),0);
+				
 			}
 		});
 	});

@@ -3,15 +3,16 @@
 var createThailandMap = function(){
 	$("#thaiMap").vectorMap({
 		map: "th_mill_en",
-		backgroundColor: 'transparent',
+		backgroundColor: "transparent",
+	    regionsSelectable: false,
 		regionStyle: {
-			initial: {
-				fill: '#8d8d8d'
-				}
+			initial: {fill: "#808080"},
+			selected: {fill: "#F4A582"}
 		},
-		onRegionClick:function (event, code, region){
-			alert(code);
-//	       console.log('Name: ' + json['properties'][code]['name'] + ', color: ' + json['properties'][code]['color']);
+		onRegionClick:function (event, code){
+			
+			var provinceid = code.substring(3);
+			dataGridProvinceFn($("#embParamYear").val(), provinceid);
 	    }
 	});
 };
@@ -91,13 +92,14 @@ var dataGridProvinceFn = function(paramYear, provineId){
 		dataType: "json",
 		data:{"paramYear":paramYear,"provinceId":provineId},
 		success:function(data){
-			//console.log(data);
+		if(data != ""){
+			alert(data);
+			console.log(data);
 			var dataGrid1="";
 			var RecordTotal = [];
 			var sumF3=0; sumF4=0; sumF5=0; sumF6=0;
 			dataGrid1+="[";
 			$.each(data,function(index,indexEntry){		
-				
 				if(index==0){
 					dataGrid1+="{";	
 				}else{
@@ -133,6 +135,7 @@ var dataGridProvinceFn = function(paramYear, provineId){
 			createHtmlGridFn();
 			setDataGrid("#dataGridDetail",objdataGrid1,RecordTotal);	
 		}
+	}
 	});
 };
 /* END: Call Ajax generate data for GridAmountByReguon */
