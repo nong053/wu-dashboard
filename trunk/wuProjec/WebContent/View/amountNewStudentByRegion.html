@@ -11,18 +11,62 @@
 <div id="content">
 	<div id="contantBody">
 		<div class="contentTitleChart">
-			<br/>จำนวนนักศึกษาใหม่ระดับปริญญาตรีตามพิ้นที่ ปีการศึกษา 2556 <br/> นักศึกษาเช้าใหม่ทั้งหมด 20,003 คน <br/> (เลื่อน Mouse ไปยังจังหวัดที่ต้องการรายละเอียด ) <br/>
-		</div>
-		
+			<br/> <label id="titleLabel" style="font:Tahoma bold 14px;"></label>
+			<script>
+				var htmlTitle = "";
+					htmlTitle += "จำนวนนักศึกษาใหม่ระดับปริญญาตรีตามพิ้นที่ ปีการศึกษา"+$("#paramYear").val()+"<br/>"+
+								"นักศึกษาเช้าใหม่ทั้งหมด "+"sum"+"คน <br/>" +
+								"(คลิกไปยังจังหวัดที่ต้องการรายละเอียด) <br/>" ;
+					$("#titleLabel").html(htmlTitle);
+			</script>
+		</div> 
+		<br/>
 		<div class="contentPanelL">
+			<div class="legend">
+				<table style="margin: auto; height:10px; font:Tahoma bold 12px;"> 
+					<tr>
+						<td style="width:20px; height:30px;">
+							<table> <tr> <td style="background-color:#8A0808; width:20px; height:10px;"> </td></tr></table>
+						</td> 
+						<td></td> 
+						<td style="width:100px"> > 10.00</td>
+					</tr>
+					<tr>
+						<td style="width:20px; height:30px;">
+							<table> <tr> <td style="background-color:#FF0000; width:20px; height:10px;"> </td></tr></table>
+						</td> 
+						<td></td> 
+						<td style="width:100px">5.01-10.00</td> 
+					</tr>
+					<tr>
+						<td style="width:20px; height:30px;">
+							<table> <tr> <td style="background-color:#FF4000; width:20px; height:10px;"> </td></tr></table>
+						</td> 
+						<td></td> 
+						<td style="width:100px">1.00-5.00</td>
+					</tr>
+					<tr>
+						<td style="width:20px; height:30px;">
+							<table> <tr> <td style="background-color:#F79F81; width:20px; height:10px;"> </td></tr></table>
+						</td> 
+						<td></td> 
+						<td style="width:100px"> < 1.00 </td>
+					</tr>
+					<tr>
+						<td style="width:20px; height:30px;">
+							<table> <tr> <td style="background-color:gray; width:20px; height:10px;"> </td></tr></table>
+						</td> 
+						<td></td> 
+						<td style="width:100px">ไม่มีนักศึกษาใหม่</td>  
+					</tr>
+				</table>
+			</div>
 			<!-- <img src="../thai_map.jpg" style="width:473px; height:600px; margin:auto;"> -->
 			<div id="thaiMap" class="jvectormap jvectormap-mill" data-projection="mill" data-name="th_mill_en"> </div>
 		</div>
 		
 		<div class="contentPanelR">
-			<!-- Description of table -->
-			<div id="" style="height:30px; font:14px Tahoma;"> จังหวัดนครศรีธรรมราช <br/> </div>
-			
+			<!-- Description of table -->		
 			<!-- Start: Table Amount New Student by Region -->
 			<div id="gridAmountByRegion" style="width:100%; height:550px; margin:auto;"> 
 				<div id="dataGrid"> </div>

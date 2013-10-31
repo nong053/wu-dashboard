@@ -1,21 +1,91 @@
 /* ########################## Start generate code for amountNewStudentByRegion Map. ########################## */
-/* Generate Thailand map by jVectorMap */
-var createThailandMap = function(){
+/* START: Generate Thailand map by jVectorMap */
+var createThailandMap = function(objColorData){
 	$("#thaiMap").vectorMap({
 		map: "th_mill_en",
 		backgroundColor: "transparent",
+	    series: {
+	        regions: [{
+	            values:objColorData,
+	            attribute: 'fill'
+	        }]
+	    },
 	    regionsSelectable: false,
 		regionStyle: {
 			initial: {fill: "#808080"},
 			selected: {fill: "#F4A582"}
 		},
 		onRegionClick:function (event, code){
+			/* Get province name from jvector append to tag hidden in body, For the grid title header. */
+			var map = $("#thaiMap").vectorMap('get', 'mapObject');
+			$("#provinceNameHi").remove();
+			$("body").append("<input type=\"hidden\" id=\"provinceNameHi\" value=\""+map.getRegionName(code)+"\">");
 			
 			var provinceid = code.substring(3);
 			dataGridProvinceFn($("#embParamYear").val(), provinceid);
 	    }
 	});
 };
+/* END: Generate Thailand map by jVectorMap */
+
+/* START: Call ajax change color Thailand map. */
+var changeMapColor = function(paramYear){
+	$.ajax({
+		url: "../Model/mapAmtStudentGroupByProvince.jsp",
+		type: "get",
+		dataType: "json", 
+		data:{"paramYear":"\""+paramYear+"\""},
+		success:function(data){
+			if(data != ""){
+				var numAllStudent = "";
+				var colorData = "";
+					colorData += "{";
+					$.each(data,function(index,indexEntry){
+						numAllStudent = indexEntry[4];
+						if(index == 0){
+							if(parseFloat(indexEntry[3]).toFixed(2) > 10.00){ 
+								colorData += "\"TH-"+indexEntry[0]+"\": \"#8A0808\"";
+								
+							}else if(parseFloat(indexEntry[3]).toFixed(2) > 5.00 && parseFloat(indexEntry[3]).toFixed(2) <= 10.00){
+								colorData += "\"TH-"+indexEntry[0]+"\": \"#FF0000\"";
+								
+							}else if(parseFloat(indexEntry[3]).toFixed(2) > 1.00 && parseFloat(indexEntry[3]).toFixed(2) <= 5.00){
+								colorData += "\"TH-"+indexEntry[0]+"\": \"#FF4000\"";
+								
+							}else if(parseFloat(indexEntry[3]).toFixed(2) <= 1.00){
+								colorData += "\"TH-"+indexEntry[0]+"\": \"#F79F81\"";					
+							}
+						}else{
+							if(parseFloat(indexEntry[3]).toFixed(2) > 10.00){ 
+								colorData += ",\"TH-"+indexEntry[0]+"\": \"#8A0808\"";
+								
+							}else if(parseFloat(indexEntry[3]).toFixed(2) > 5.00 && parseFloat(indexEntry[3]).toFixed(2) <= 10.00){
+								colorData += ",\"TH-"+indexEntry[0]+"\": \"#FF0000\"";
+								
+							}else if(parseFloat(indexEntry[3]).toFixed(2) > 1.00 && parseFloat(indexEntry[3]).toFixed(2) <= 5.00){
+								colorData += ",\"TH-"+indexEntry[0]+"\": \"#FF4000\"";
+								
+							}else if(parseFloat(indexEntry[3]).toFixed(2) <= 1.00){
+								colorData += ",\"TH-"+indexEntry[0]+"\": \"#F79F81\"";
+							}
+						}
+					});
+					colorData += "}";
+					
+//					alert(colorData);
+					var objColorData = eval("("+colorData+")");
+					createThailandMap(objColorData);
+					
+					/*get count totle append to tag body, For calculator totalTitle in data grid */ 
+					$("#countTotle").remove();
+					$("body").append("<input type=\"hidden\" id=\"countTotle\" value=\""+numAllStudent+"\">");
+			}else{
+				alert("Data Not Found");
+			}
+		}
+	});
+};
+/* END: Call ajax change color Thailand map. */ 
 /* ########################## Start generate code for amountNewStudentByRegion Map. ########################## */
 
 
@@ -53,14 +123,18 @@ var $title =[
 
 
 /* START: Create Table Html for gridAmountByRegion */
-var createHtmlGridFn = function(paramYear){
+var createHtmlGridFn = function(provinceName){
 	gridRatio = ""+
 				"<table id=\"dataGridDetail\" width=\"100%\" border=\"1\">" +
 	       			"<thead>" +
 	       				"<tr>" +
+	       					"<th colspan=\"2\"> <label id=\"provinceNameTitle\"> ทุกจังหวัด  </label> </th>" +
+	       					"<th colspan=\"4\" style=\"text-align:right;\"> <label id=\"totlaTitle\"> 100% </lable> </th>" +
+	       				"</tr>" +
+	       				"<tr>" +
 	       					"<th data-field=\"Field1\" rowspan=\"2\"> <center><b> ลำดับ </b></center> </th>" +
 	       					"<th data-field=\"Field2\" rowspan=\"2\"> <center><b> โรงเรียน </b></center> </th>" +
-	       					"<th data-field=\"Field0\" colspan=\"4\"> <center><b> โรงเรียน </b></center> </th>"+
+	       					"<th data-field=\"Field0\" colspan=\"4\"> <center><b> ตามประเภทการรับเข้า(คน) </b></center> </th>"+
 	       				"</tr>"+
 	       				"<tr>"+
 							"<th data-field=\"Field3\"> <center><b> โควตา </b></center> </th>" +
@@ -93,8 +167,7 @@ var dataGridProvinceFn = function(paramYear, provineId){
 		data:{"paramYear":paramYear,"provinceId":provineId},
 		success:function(data){
 		if(data != ""){
-			alert(data);
-			console.log(data);
+//			console.log(data);
 			var dataGrid1="";
 			var RecordTotal = [];
 			var sumF3=0; sumF4=0; sumF5=0; sumF6=0;
@@ -106,7 +179,7 @@ var dataGridProvinceFn = function(paramYear, provineId){
 					dataGrid1+=",{";
 				}
 					dataGrid1+="Field1:"+(index+1)+",";
-					dataGrid1+="Field2:\""+indexEntry[0]+"\",";
+					dataGrid1+="Field2:\""+indexEntry[0].replace(/\"/g,"\\"+"\"")+"\",";
 					dataGrid1+="Field3:"+indexEntry[1]+",";
 					dataGrid1+="Field4:"+indexEntry[2]+",";
 					dataGrid1+="Field5:"+indexEntry[3]+",";
@@ -134,6 +207,8 @@ var dataGridProvinceFn = function(paramYear, provineId){
 			//console.log(objdataGrid1);
 			createHtmlGridFn();
 			setDataGrid("#dataGridDetail",objdataGrid1,RecordTotal);	
+		}else{
+			alert("Data not found");
 		}
 	}
 	});
@@ -148,6 +223,11 @@ var setDataGrid = function(gridName,objDataGrid1,RecordTotal){
 		  height: 550,
 	      scrollable:true
 		});
+	
+	/* set Header Table */
+	var per = ((parseInt(RecordTotal[6]) / parseInt($("#countTotle").val()))*100);
+	$("#totlaTitle").text($("#countTotle").val()+" คน  คิดเป็น "+per.toFixed(2)+"%" );
+	$("#provinceNameTitle").text($("#provinceNameHi").val());
 	
 	/* set Font for Number pending */
 	$(gridName+" tbody tr").each(function(){
