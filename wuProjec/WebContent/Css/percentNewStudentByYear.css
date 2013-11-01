@@ -1,6 +1,18 @@
-hr{
+/*hr{
 	width:90%;
 	color:#D3D3D3;
+}*/
+#contentBody{
+	width:900px;
+	height:auto;
+	margin:auto;
+}
+#topContent{
+	width:890px;
+	height:650px;
+	margin:auto;
+	box-shadow: 0 0 10px #888888;
+	/*border: 1px solid red;*/
 }
 #contentTitleChart{
 	width:900px;
@@ -10,28 +22,23 @@ hr{
 	font-weight:bold;
 	/*border:1px solid red;*/
 }
-#topContent{
-	width:890px;
-	height:650px;
-	margin:auto;
-	/*border: 1px solid red;*/
-	
-}
 #contentGauges{
 	/*border: 1px solid orange;*/
 }
+
 #bottomContent{
 	width:890px;
-	height:450px;
+	height:480px;
 	margin:auto;
+	box-shadow: 0 0 10px #888888;
 	/*border: 1px solid orange;*/
 }
-#bottomContent .bottomContentPanel{
+/*#bottomContent .bottomContentPanel{
 	width:600px;
 	height:170px;
 	margin:auto;
 	border: 1px solid blue;
-}
+}*/
 
 /*#contentPanel{
 	width:150px;

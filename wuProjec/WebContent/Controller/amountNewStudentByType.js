@@ -5,10 +5,17 @@ function convertPercentoAmount(v,total){
 	var amountPerson = (v*total/100);
 	return amountPerson;
 }
-function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCategories) {
+
+var subStrCategory = function(value){
+	return value.substring(0,3);
+}; 
+
+function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCategories, sumSeries) { alert(sumSeries);
            $("#newStudentByType").kendoChart({
                legend: {
-                   visible: false
+                   visible: true,
+                   position: "bottom",
+                   background: ""
                },
                seriesDefaults: {
                    type: "bar",
@@ -17,15 +24,15 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
                series: [{
                    name: "โควตา",
                    data: objSeriesFirst,
-                   color: "#f3ac32"
+                   color: "#5858FA"
                }, {
                    name: "รับตรง",
                    data: objSeriesSecond,
-                   color: "#b8b8b8"
+                   color: "#FA5858"
                }, {
                    name: "Admissions",
                    data: objSeriesThird,
-                   color: "#bb6e36"
+                   color: "#ACFA58"
                }],
                valueAxis: {
                    max: 100,
@@ -33,21 +40,26 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
                        format: "{0}%"
                    },
                    line: {
-                       visible: false
+                       visible: true
                    },
                    minorGridLines: {
-                       visible: true
+                       visible: false
                    }
                },
                categoryAxis: {
             	   categories: objCategories,
                    majorGridLines: {
                        visible: false
+                   },
+                   labels: {
+                       font: "6.25pt Verdana",
+                       rotation: -45,
+                       template: " #=  #"
                    }
                },
                tooltip: {
                    visible: true,
-                   template: "#= series.name #: #= value #%"
+//                   template: "#subStrCategory(#=category#)#, #= series.name #, #= value #%"
                   // template: "#= convertPercentoAmount(value,100) #"
                },
                seriesClick:function(e){           	   
@@ -63,7 +75,8 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
            });
        }
 /* END: Generate Chart-01 By Kendo */
-       
+      
+
 /* START: Generate Chart-02 By Kendo */
        function averageGpaByYear(objseriesData, objcategoriesData) {
            $("#averageGpaByYear").kendoChart({
@@ -133,7 +146,7 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
 /* START: Generate Chart-03 By Kendo */
        
        
-/* START: Call Ajax for create graph(01) newStudentByType */
+/* START: Call Ajax for create chart(01) newStudentByType */
        var amountNewStudentByTypeFn = function(){
     	   $.ajax({
     		   url: "../Model/amountNewStudentByType.jsp",
@@ -154,31 +167,31 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
     			   
     			   $.each(data,function(index,indexEntry){
     				   //alert(indexEntry[0]);
-    				   sumSeries=parseFloat(indexEntry[1])+parseFloat(indexEntry[2])+parseFloat(indexEntry[3]);
+    				   sumSeries=parseFloat(indexEntry[2])+parseFloat(indexEntry[3])+parseFloat(indexEntry[4]);
     				   if(index==0){  
-    					   seriesFirst+=""+parseFloat((parseFloat(indexEntry[1])/sumSeries)*100).toFixed(2)+"";
-    					   seriesSecond+=""+parseFloat((parseFloat(indexEntry[2])/sumSeries)*100).toFixed(2)+"";
-    					   seriesThird+=""+parseFloat((parseFloat(indexEntry[3])/sumSeries)*100).toFixed(2)+"";
-    					   categoriesData+="\""+indexEntry[0]+"\"";
+    					   seriesFirst+=""+parseFloat((parseFloat(indexEntry[2])/sumSeries)*100).toFixed(2)+"";
+    					   seriesSecond+=""+parseFloat((parseFloat(indexEntry[3])/sumSeries)*100).toFixed(2)+"";
+    					   seriesThird+=""+parseFloat((parseFloat(indexEntry[4])/sumSeries)*100).toFixed(2)+"";
+    					   categoriesData+="\""+indexEntry[0]+"-"+indexEntry[1]+"\"";
     				   }else{
-    					   seriesFirst+=","+parseFloat((parseFloat(indexEntry[1])/sumSeries)*100).toFixed(2);
-    					   seriesSecond+=","+parseFloat((parseFloat(indexEntry[2])/sumSeries)*100).toFixed(2)+"";
-    					   seriesThird+=","+parseFloat((parseFloat(indexEntry[3])/sumSeries)*100).toFixed(2)+"";
-    					   categoriesData+=",\""+indexEntry[0]+"\"";
+    					   seriesFirst+=","+parseFloat((parseFloat(indexEntry[2])/sumSeries)*100).toFixed(2);
+    					   seriesSecond+=","+parseFloat((parseFloat(indexEntry[3])/sumSeries)*100).toFixed(2)+"";
+    					   seriesThird+=","+parseFloat((parseFloat(indexEntry[4])/sumSeries)*100).toFixed(2)+"";
+    					   categoriesData+=",\""+indexEntry[0]+"-"+indexEntry[1]+"\"";
     					   }
     				   });
     			   seriesFirst+="]"; 
     			   seriesSecond+="]"; 
     			   seriesThird+="]";
     			   categoriesData+="]";
-    			   
+    			   alert(sumSeries);
     			   /*Convert text to object json by eval().*/
     			   var objSeriesFirst = eval("("+seriesFirst+")");
     			   var objSeriesSecond = eval("("+seriesSecond+")");
     			   var objSeriesThird = eval("("+seriesThird+")");
     			   var objCategories = eval("("+categoriesData+")");
     			   
-    			   newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCategories); 			
+    			   newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCategories, sumSeries); 			
     		   }
     	   });
        };
