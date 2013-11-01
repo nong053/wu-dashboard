@@ -1,4 +1,4 @@
-.jvectormap-label {
+/*.jvectormap-label {
     position: absolute;
     display: none;
     border: solid 1px #CDCDCD;
@@ -10,6 +10,21 @@
     font-family: sans-serif, Verdana;
     font-size: smaller;
     padding: 3px;
+    z-index:11;
+}*/
+.jvectormap-label {
+	position: absolute;
+	display: none;
+	border:  1px solid white;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	background: #0040FF;
+	color: white;
+	font-family: Tahoma;
+	padding: 5px 15px;
+	font-size:20px;
+	z-index:11;
 }
 
 .jvectormap-zoomin, .jvectormap-zoomout {
