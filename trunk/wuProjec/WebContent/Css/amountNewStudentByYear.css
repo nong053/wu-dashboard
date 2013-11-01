@@ -1,19 +1,19 @@
 #topContent{
 	width:950px;
-	height:400px;
+	height:auto;
+	box-shadow: 0 0 5px #888888;
 	/*border:1px solid red;*/
 }
 
 #topContent .panel{
 	float:left;
 	width:473px;
-	height:400px;
-	box-shadow: 0 0 5px #888888;
+	height:auto;
 	/*border:1px solid red;*/
 	
 }
 #topContent .panel .panelTitleChart{
-	height:40px;
+	height:60px;
 	margin:auto;
 	text-align:center;
 	font-weight:bold;
@@ -34,7 +34,7 @@
 	/*border:1px solid red;*/
 }
 #contentTitleChart{
-	height:40px;
+	height:60px;
 	margin:auto;
 	text-align:center;
 	font-weight:bold;
