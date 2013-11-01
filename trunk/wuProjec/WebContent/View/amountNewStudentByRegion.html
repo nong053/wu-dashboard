@@ -3,19 +3,19 @@
 
 <script src="../jvectormap/js/jquery-jvectormap-th-mill-en.js"> </script>
 
-<!--<script src="../jvectormap/js/jquery-jvectormap-th-merc-en.js"> </script>-->
-
+<link href="../jvectormap/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css">
 <link class="style" href="../Css/amountNewStudentByRegion.css" rel="stylesheet" type="text/css">
 <script src="../Controller/amountNewStudentByRegion.js"></script>
 
 <div id="content">
 	<div id="contantBody">
 		<div class="contentTitleChart">
-			<br/> <label id="titleLabel" style="font:Tahoma bold 14px;"></label>
+			<br/> 
+			<label id="titleLabel" style="font:Tahoma bold 14px;"></label>
 			<script>
 				var htmlTitle = "";
 					htmlTitle += "จำนวนนักศึกษาใหม่ระดับปริญญาตรีตามพิ้นที่ ปีการศึกษา"+$("#paramYear").val()+"<br/>"+
-								"นักศึกษาเช้าใหม่ทั้งหมด "+"sum"+"คน <br/>" +
+								"นักศึกษาเช้าใหม่ทั้งหมด <label id=\"amtNewStuTitle\"></label> คน <br/>" +
 								"(คลิกไปยังจังหวัดที่ต้องการรายละเอียด) <br/>" ;
 					$("#titleLabel").html(htmlTitle);
 			</script>

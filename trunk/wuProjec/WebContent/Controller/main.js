@@ -121,10 +121,10 @@ $(document).ready(function(){
 				$("#tabs-4").html(data);
 				
 				changeMapColor($("#paramYear").val());
-				
+				dataGridProvinceFn($("#paramYear").val(),0);
 //				createThailandMap();	
 //				createHtmlGridFn();
-				dataGridProvinceFn($("#paramYear").val(),0);
+				
 				
 			}
 		});

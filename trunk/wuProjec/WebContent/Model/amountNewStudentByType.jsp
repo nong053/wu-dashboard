@@ -7,7 +7,7 @@
 	
 	wuService jndi = new wuService();	
 	String query = "call amountNewStudentByType("+paramYear+")"; //call storeprocedure
-	String field = "2,3,4,5,6"; //select field
+	String field = "1,2,3,4,5,6"; //select field
 		jndi.selectByIndex(query, field);
 		out.print(jndi.getData());	
 	

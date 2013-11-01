@@ -7,7 +7,7 @@ var createThailandMap = function(objColorData){
 	    series: {
 	        regions: [{
 	            values:objColorData,
-	            attribute: 'fill'
+	            attribute: "fill"
 	        }]
 	    },
 	    regionsSelectable: false,
@@ -15,9 +15,12 @@ var createThailandMap = function(objColorData){
 			initial: {fill: "#808080"},
 			selected: {fill: "#F4A582"}
 		},
+//		onLabelShow: function(event, label, code){
+//				event.preventDefault();  
+//		},
 		onRegionClick:function (event, code){
 			/* Get province name from jvector append to tag hidden in body, For the grid title header. */
-			var map = $("#thaiMap").vectorMap('get', 'mapObject');
+			var map = $("#thaiMap").vectorMap("get", "mapObject");
 			$("#provinceNameHi").remove();
 			$("body").append("<input type=\"hidden\" id=\"provinceNameHi\" value=\""+map.getRegionName(code)+"\">");
 			
@@ -41,7 +44,6 @@ var changeMapColor = function(paramYear){
 				var colorData = "";
 					colorData += "{";
 					$.each(data,function(index,indexEntry){
-						numAllStudent = indexEntry[4];
 						if(index == 0){
 							if(parseFloat(indexEntry[3]).toFixed(2) > 10.00){ 
 								colorData += "\"TH-"+indexEntry[0]+"\": \"#8A0808\"";
@@ -69,16 +71,23 @@ var changeMapColor = function(paramYear){
 								colorData += ",\"TH-"+indexEntry[0]+"\": \"#F79F81\"";
 							}
 						}
+						numAllStudent = indexEntry[4];
 					});
 					colorData += "}";
 					
 //					alert(colorData);
 					var objColorData = eval("("+colorData+")");
-					createThailandMap(objColorData);
+					var objnumAllStudent = eval("("+numAllStudent+")");
 					
-					/*get count totle append to tag body, For calculator totalTitle in data grid */ 
-					$("#countTotle").remove();
-					$("body").append("<input type=\"hidden\" id=\"countTotle\" value=\""+numAllStudent+"\">");
+					/*get count totle by year append to tag body, For calculator totalTitle in data grid */ 
+					$("#countNewStudent").remove();
+					$("body").append("<input type=\"hidden\" id=\"countNewStudent\" class=\"countNewStudent\" value=\""+objnumAllStudent+"\">");
+					
+					/* set title page */
+					$("label#amtNewStuTitle").text($("#countNewStudent").val());
+					
+					/*Generate Map*/
+					createThailandMap(objColorData);
 			}else{
 				alert("Data Not Found");
 			}
@@ -225,9 +234,10 @@ var setDataGrid = function(gridName,objDataGrid1,RecordTotal){
 		});
 	
 	/* set Header Table */
-	var per = ((parseInt(RecordTotal[6]) / parseInt($("#countTotle").val()))*100);
-	$("#totlaTitle").text($("#countTotle").val()+" คน  คิดเป็น "+per.toFixed(2)+"%" );
+	var per = ((parseInt(RecordTotal[6]) / parseInt($(".countNewStudent").val()))*100);
+	$("#totlaTitle").text($("#countNewStudent").val()+" คน  คิดเป็น "+per.toFixed(2)+"%");
 	$("#provinceNameTitle").text($("#provinceNameHi").val());
+	$("#provinceNameTitle").css({"font-weight":"bold","font-size":"14px"});
 	
 	/* set Font for Number pending */
 	$(gridName+" tbody tr").each(function(){
