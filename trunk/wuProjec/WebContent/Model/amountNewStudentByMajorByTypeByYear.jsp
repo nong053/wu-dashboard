@@ -10,7 +10,7 @@
 	wuService jndi = new wuService();	
 	String query = "call amountNewStudentByMajorByTypeByYear("+paramYear+","+facuId+","+typeId+")"; //call storeprocedure
 	//String query = "call amountNewStudentByMajorByTypeByYear(2555,\"การจัดการ\",\"รับตรง\")";
-	String field = "2,3"; //select field
+	String field = "1,2,3"; //select field
 		jndi.selectByIndex(query, field);
 		out.print(jndi.getData());	
 	
