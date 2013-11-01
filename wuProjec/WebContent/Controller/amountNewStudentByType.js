@@ -1,28 +1,31 @@
 /* Control object in page. */
+$("div#buttomContent").hide();
 $(".panel").hide();
 $(".panelChartTitle").hide();
-
+//var s = "1234567890";
+//alert(s.substring(s.indexOf(5)+1));
 /* #################### START: Create code for generate newStudentByType Chart. #################### */
 /* START: Generate newStudentByType(chart-01) By Kendo */
 function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCategories, sumSeries) {
 	$("#newStudentByType").kendoChart({
-		background: "",
+    	chartArea: {
+    		background: ""
+    	},
 		legend: {
 			visible: true,
 			position: "bottom",
-			label:{
-				visible: true,
-				template: kendo.template("NNNN#:series.substring(2)#")
-			}
 		},
 		seriesDefaults: {
+			labels: {
+				template: kendo.template("#:series.substring(3)#")
+			},
 			type: "bar",
 			stack: true
 			},
 			series: [{
 				name: "1-โควตา",
 				data: objSeriesFirst,
-				color: "#5858FA"
+				color: "#357EC7"
 			},{
 				name: "2-รับตรง",
 				data: objSeriesSecond,
@@ -58,6 +61,7 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
 			template: "#=category.substring(3)#, #= series.name.substring(2) #, #= value #%"
 		},
 		seriesClick:function(e){
+			$("div#buttomContent").show();
 			$(".panel").show();
 			$(".panelChartTitle").show();
 			
@@ -133,7 +137,9 @@ var amountNewStudentByTypeFn = function(){
 /* START: Generate averageGpaByYear(Chart-02) By Kendo */
 function averageGpaByYear(objseriesData, objcategoriesData) {
 	$("#averageGpaByYear").kendoChart({
-		background: "",
+    	chartArea: {
+    		background: ""
+    	},
 		legend: {
 			visible: false
 			},
@@ -144,7 +150,7 @@ function averageGpaByYear(objseriesData, objcategoriesData) {
 			series: [{
 				name: "GPA",
 				data: objseriesData,
-				color: "#8A2BE2"
+				color: "#357EC7"
 			}],
 			valueAxis: {
 				max: 4,
@@ -162,11 +168,15 @@ function averageGpaByYear(objseriesData, objcategoriesData) {
 				categories: objcategoriesData,
 				majorGridLines: {
 					visible: false
-					}
+				},
+				labels: {
+					template: kendo.template("#:value.substring(0,value.indexOf(\"/\"))#")
+				}
 			},
 			tooltip: {
 				visible: true,
-				template: "#= series.name #: #= value #"
+				template: kendo.template("#= category.substring(0,category.indexOf(\"/\")) #, " +
+						"#= value #, #= category.substring(category.indexOf(\"/\")+1) # ")
 			}
 	});
 }
@@ -188,15 +198,15 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
 	 				$.each(data,function(index,indexEntry){
 	 					if(index==0){
 	 						seriesData+=""+parseFloat(indexEntry[3]).toFixed(2)+"";
-	 						categoriesData+="\""+indexEntry[1]+"\"";
+	 						categoriesData+="\""+indexEntry[1]+"/"+indexEntry[2]+" คน\"";
 	 					}else{
 	 						seriesData+=","+parseFloat(indexEntry[3]).toFixed(2)+"";
-	 						categoriesData+=",\""+indexEntry[1]+"\"";
+	 						categoriesData+=",\""+indexEntry[1]+"/"+indexEntry[2]+" คน\"";
 	 					}				
 	 				});
 	 				seriesData+="]";
 					categoriesData+="]";
-
+					
 					var objseriesData = eval("("+seriesData+")");
 					var objcategoriesData = eval("("+categoriesData+")");
 
@@ -217,11 +227,16 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
 /* START: Generate newStudentByMajor(Chart-03) By Kendo */
        function newStudentByMajor(objDataCloumn) {
            $("#newStudentByMajor").kendoChart({
-        	   background: "",
-               legend: {
-                  position: "bottom",
-                  font:"10xp Tahoma"
-               },
+           	chartArea: {
+        		background: ""
+        	},
+        	legend: {
+//        	    labels: {
+//        	      template: kendo.template("#: category #%")
+//        	    },
+        	    position: "bottom",
+                font:"10xp Tahoma"
+        	  },
                seriesDefaults: {
                    labels: {
                        template: "#= kendo.format('{0:P}', percentage)#",
@@ -236,12 +251,12 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
                }],
                tooltip: {
                    visible: true,
-                   template: "#= kendo.format('{0:P}', percentage) #"
+                   template: kendo.template("#= category.replace(\"/\",\", \") #")
                }
            });
        }
 /* START: Generate newStudentByMajor(Chart-03) By Kendo */
-       
+    
 /* START: Call Ajax for create newStudentByMajor(Chart-03) */
        var amountNewStudentByMajorFn = function(typeId, facuId){
     	   $.ajax({
@@ -251,32 +266,39 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
     		   data:{"paramYear":$("#embParamYear").val(), "facuId":facuId, "typeId":typeId},
     		   success:function(data){
     			   if(data != ""){
+    				   /* total new student by year, faculty and type. (select from newStudentByType) */
+    				   var sumAtmStudent = 0;
+    				   $.each(data,function(index,indexEntry){
+    					   
+    					   sumAtmStudent += (parseInt(indexEntry[2]));
+    				   });
+
+    				   var color = ["#357EC7","#C38EC7","#438D80","#437C17","#FBB117","#990012","#E8ADAA","#C38EC7","#FFF380"];
+    				   var indexColor = 1;
     				   var dataCloumn = "";
         			   dataCloumn = "[";
         			   
         			   $.each(data,function(index,indexEntry){
         				   if(index==0){
         					   dataCloumn+="{";
-        					   dataCloumn+="category:"+"\""+indexEntry[0]+"\",";
-        					   dataCloumn+="value:"+""+indexEntry[1];
+        					   dataCloumn+="category:"+"\""+indexEntry[1]+"/"+(indexEntry[2])+" คน\",";
+        					   dataCloumn+="value:"+""+((parseFloat(indexEntry[2])/sumAtmStudent)*100).toFixed(2)+",";
+        					   dataCloumn+="color:"+"\""+color[0]+"\"";
         					   dataCloumn+="}";
         				   }else{
         					   dataCloumn+=",{";
-        					   dataCloumn+="category:"+"\""+indexEntry[0]+"\",";
-        					   dataCloumn+="value:"+""+indexEntry[1];	
+        					   dataCloumn+="category:"+"\""+indexEntry[1]+"/"+(indexEntry[2])+" คน\",";
+        					   dataCloumn+="value:"+""+((parseFloat(indexEntry[2])/sumAtmStudent)*100).toFixed(2)+",";
+        					   dataCloumn+="color:"+"\""+color[indexColor++]+"\"";
         					   dataCloumn+="}";
         				   }
         			   });
         			   dataCloumn+="]";
-        			   
-        			   var objDataCloumn = eval("("+dataCloumn+")");
-        			   
+        			   var objDataCloumn = eval("("+dataCloumn+")");       			   
         			   newStudentByMajor(objDataCloumn);
     			   }else{
     				   alert("จำนวนนักศึกษาใหม่ตามหลักสูตร \r\n No Data Found!");
     			   }
-    			   
-
     		   }
     	   });
        };
