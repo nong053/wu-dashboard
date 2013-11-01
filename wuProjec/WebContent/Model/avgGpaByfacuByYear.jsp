@@ -4,11 +4,11 @@
 <%
 	String paramYear = request.getParameter("paramYear");
 	String facuId = request.getParameter("facuId");
-	String TypeId = request.getParameter("TypeId");
+	String typeId = request.getParameter("typeId");
 
 	
 	wuService jndi = new wuService();	
-	String query = "call avgGpaByYear("+paramYear+","+facuId+","+TypeId+")"; //call storeprocedure
+	String query = "call avgGpaByYear("+paramYear+","+facuId+","+typeId+")"; //call storeprocedure
 	//String query = "call avgGpaByYear(2555,\"การจัดการ\",\"รับตรง\")";
 	String field = "1,2,3,4"; //select field
 		jndi.selectByIndex(query, field);

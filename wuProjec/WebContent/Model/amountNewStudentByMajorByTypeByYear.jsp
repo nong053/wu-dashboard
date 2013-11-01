@@ -3,12 +3,12 @@
     pageEncoding="UTF-8"%>
 <%
 	String paramYear = request.getParameter("paramYear");
-	String facuName = request.getParameter("facuName");
-	String TypeName = request.getParameter("TypeName");
+	String facuId = request.getParameter("facuId");
+	String typeId = request.getParameter("typeId");
 
 	
 	wuService jndi = new wuService();	
-	String query = "call amountNewStudentByMajorByTypeByYear("+paramYear+",\""+facuName+"\",\""+TypeName+"\")"; //call storeprocedure
+	String query = "call amountNewStudentByMajorByTypeByYear("+paramYear+","+facuId+","+typeId+")"; //call storeprocedure
 	//String query = "call amountNewStudentByMajorByTypeByYear(2555,\"การจัดการ\",\"รับตรง\")";
 	String field = "2,3"; //select field
 		jndi.selectByIndex(query, field);
