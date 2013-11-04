@@ -1,7 +1,7 @@
 /*Control object in page */
 $(".bottomTitleChart").hide();
 $("#bottomContent").hide();
-$(".asOfYear").text($("#embParamYear").val());
+$(".asOfYear").text($(".yearSelected").val());
 $(".legend-2").hide();
 
 /*Create Tooltip by JQuery By assign the title on Object*/
@@ -9,10 +9,10 @@ $(function() {
     $( document ).tooltip();
 });
 
-/*#################### STRAT: Create code for generate Gauge. #################### */
-/*START: Create Chart */
+/*#################### STRAT: Create code for generate percentCompareByFacultyChart(Gauge-top). #################### */
+/*START: Create Chart percentCompareByFacultyChart by Kendo */
+
 function percentCompareByFacultyChart(fucultyId, fucultyName, values, amtStudent, amtPlan) {
-//	alert();
 	var htmlData = "<div class=\"contentPanel\">";
 		htmlData += "<div id=\"gauge"+fucultyId+"\" class=\"gaugePanel\" " +
 				"title=\"นศ.ใหม่:"+amtStudent+", จำนวนรับตามแผน:"+amtPlan+", "+values+"%\" " +
@@ -60,8 +60,28 @@ function percentCompareByFacultyChart(fucultyId, fucultyName, values, amtStudent
 	});
 	
 }
-/*END: Create Chart */
-/*#################### END: Create code for generate top Gauges. #################### */
+/*END: Create Chart percentCompareByFacultyChart by Kendo */
+
+/*START: Call ajax get json data for create percentCompareByFacultyChart (gauge-top). */
+var percentCompareByFacultyFn = function(){
+	$.ajax({
+		url: "../Model/percentNewStudentByFucultyComparedByPlan.jsp",
+		type: "get",
+		dataType: "json",
+		data:{"paramYear":$(".yearSelected").val()},
+		success:function(data){
+//			alert(data);				
+			$("#contentGauges").empty();
+			$("#contentGaugeTitle").empty();
+			$.each(data,function(index,indexEntry){
+//				alert(indexEntry[4]);
+				percentCompareByFacultyChart(indexEntry[0], indexEntry[1], indexEntry[4],indexEntry[2],indexEntry[3]);
+			});
+		}
+	});
+};
+/*END: Call ajax get json data for create percentCompareByFacultyChart (gauge-top). */
+/*#################### END: Create code for generate percentCompareByFacultyChart(Gauge-top). #################### */
 
 
 
@@ -69,7 +89,7 @@ function percentCompareByFacultyChart(fucultyId, fucultyName, values, amtStudent
 /*START: Create bottom Chart (percentCompareByMajorChart) */
 	function percentCompareByMajorChart(MajorId, MajorName,amtStudent, amtplan, values) {
 		//alert();
-		var htmlData = "<div class=\"contentPanel\" title=\"Test\">";
+		var htmlData = "<div class=\"contentPanel\">";
 			htmlData += "<div id=\"gauge"+MajorId+"\" class=\"gaugePanel\" " +
 					"title=\"นศ.ใหม่:"+amtStudent+", จำนวนรับตามแผน:"+amtplan+", "+values+"%\" " +
 					"style=\"width:180px; height:155px; margin:auto; padding-left:10%;\"></div>";
@@ -106,44 +126,22 @@ function percentCompareByFacultyChart(fucultyId, fucultyName, values, amtStudent
                     });
     }
 /*END: Create bottom Chart (percentCompareByMajorChart) */
-/*#################### END: Create code for generate bottom Gauges. #################### */
 	
-	
-/*START: Call ajax get json data for create top gauge. */
-var percentCompareByFacultyFn = function(){
-	$.ajax({
-		url: "../Model/percentNewStudentByFucultyComparedByPlan.jsp",
-		type: "get",
-		dataType: "json",
-		data:{"paramYear":$("#embParamYear").val()},
-		success:function(data){
-//			alert(data);				
-			$("#contentGauges").empty();
-			$("#contentGaugeTitle").empty();
-			$.each(data,function(index,indexEntry){
-//				alert(indexEntry[4]);
-				percentCompareByFacultyChart(indexEntry[0], indexEntry[1], indexEntry[4],indexEntry[2],indexEntry[3]);
-			});
-		}
-	});
-};
-/*END: Call ajax get json data for create top gauge. */
-
-
 /*START: Call ajax get json data for create bottom gauge. */
 var percentCompareByMajorFn = function(fucultyId){
 	$.ajax({
 		url: "../Model/percentNewStudentByMajorComparedByPlan.jsp",
 		type: "get",
 		dataType: "json",
-		data:{"paramYear":$("#embParamYear").val(), "majorId":fucultyId},
+		data:{"paramYear":$(".yearSelected").val(), "majorId":fucultyId},
 		success:function(data){
 			$("#bottomContent #contentGauges").empty();
 			$.each(data,function(index,indexEntry){
 				percentCompareByMajorChart(indexEntry[0], indexEntry[1], indexEntry[2], indexEntry[3], indexEntry[4]);
-				
+					
 			});
 		}
 	});
 };
 /*END: Call ajax get json data for create bottom gauge. */
+/*#################### END: Create code for generate bottom Gauges. #################### */

@@ -3,23 +3,24 @@
 	color:#D3D3D3;
 }*/
 #contentBody{
-	width:900px;
+	width:980px;
 	height:auto;
 	margin:auto;
 }
 #topContent{
-	width:890px;
-	height:650px;
-	margin:auto;
+	width:980px;
+	height:660px;
+	margin:10px auto auto;
 	/*box-shadow: 0 0 10px #888888;*/
-	/*border: 1px solid red;*/
+	border: 1px solid #CCCCCC;
 }
 #contentTitleChart{
 	width:900px;
-	height:60px;
+	height:40px;
 	margin:auto;
 	text-align:center;
 	font-weight:bold;
+	padding:5px;
 	/*border:1px solid red;*/
 }
 #contentGauges{
@@ -27,31 +28,17 @@
 }
 
 #bottomContent{
-	width:890px;
-	height:480px;
-	margin:auto;
+	width:980px;
+	height:470px;
+	margin:10px auto auto;
 	/*box-shadow: 0 0 10px #888888;*/
-	/*border: 1px solid orange;*/
+	border: 1px solid #CCCCCC;
 }
-/*#bottomContent .bottomContentPanel{
-	width:600px;
-	height:170px;
-	margin:auto;
-	border: 1px solid blue;
-}*/
-
-/*#contentPanel{
-	width:150px;
-	height:170px;
-	float:left;
-	margin:auto;
-	padding-left:5%;
-	border:1px solid yellow;
-}*/
 .contentPanel{
 	width:220px;
 	height:180px;
 	float:left;
+	margin:10px;
 	/*border:1px solid orange;*/
 }
 .gaugePanel{

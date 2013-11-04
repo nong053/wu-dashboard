@@ -2,10 +2,10 @@
 $("#titleTopSelect").hide();		
 $(".titleCompareFaculty").hide();
 $(".titleCompareMajor").hide();
-$("hr#line-2").hide();
-$("hr#line-3").hide();
 
-/* START: Generate barChart(Chart-01) by Kendo */
+/* ################### START: Create code for generate newStudentByYearChart(Chart-01). #################### */
+/* START: Generate newStudentByYearChart(Chart-01) by Kendo */
+
 function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData) {
     $("#newStudentByYearChart").kendoChart({
     	chartArea: {
@@ -21,7 +21,7 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
         series: [{
         	type: "column",
             name: "จำนวนนักศึกษา",
-            color: "#0066FF",
+            color: "#357EC7",
             data: objSeriesColumnData
         },{
             type: "line",
@@ -30,7 +30,7 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
             color: "#CC0000",
         }],
         valueAxis: {
-            //max: 2500,
+//            max: 2500,
             line: {
                 visible: true
             },
@@ -42,45 +42,40 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
             categories: objCateData,
             majorGridLines: {
                 visible: false
-            }
-        
+            }        
         },
         tooltip: {
             visible: true,
-            template: "#= category #, #= value # คน",
+            template: "ปี #= category #, #= value # คน",
         },
         seriesClick:function(e){
+        	
         	/*start layout center and bottom*/
-		
 			$("#centerContent").show();
 			$("#panelL-Page1").show();
 			
 			
-        	//alert(e);
+//        	alert(e);
         	$("#titleTopSelect").show(); //Show title Chart02-04
         	$(".asOfYear").text(e.category); //Display asOfYear on Chart Title
         	
-        	/* Display Chart-02 by Change select option */
-        	/*
-        	$("#selectTop").change(function(){
-        		alert("change");
-	        	topTenHighSchoolByYearFn(e.category,$(this).val());
-        	});
+        	/* Display topTenHighSchoolByYearChart(Chart-02) by Change select option */
+//        	$("#selectTop").change(function(){
+//        		alert("change");
+//	        	topTenHighSchoolByYearFn(e.category,$(this).val());
+//        	});
         	
-        	*/
-        	//$("#selectTop").change(function(){
-        		//alert("change");
+//        	$("#selectTop").change(function(){
+//        		alert("change");
 	        	topTenHighSchoolByYearFn(e.category,$("#selectTop").val());
-        	//});
-        	
-        	
-        	/* Display Chart-03 */
+//        	});
+        	   	
+        	/* Display newStudentByYearByFacultyChart(Chart-03) */
         	$(".titleCompareFaculty").show();
         	newStudentByYearByFacultyFn(e.category);
-        	$("hr#line-2").show();
         	
-        	$(".categoryParam").remove();
-        	$("body").append("<input type=\"hidden\" id=\"categoryYear\" name=\"categoryYear\" class=\"categoryParam\" value="+e.category+">");
+        	$(".yearSelected").remove();
+        	$("body").append("<input type=\"hidden\" id=\"categoryYear\" name=\"categoryYear\" class=\"yearSelected\" value="+e.category+">");
         	
         	/* Show Tabs 2-5 */
         	$("[href='#tabs-2']").show();
@@ -88,21 +83,28 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
         	$("[href='#tabs-4']").show();
         	$("[href='#tabs-5']").show();
         	
-        	/*Hide Chart04(newStudentByYearByFacultyByMajorChart)*/
+        	/*Hide newStudentByYearByFacultyByMajorChart(Chart-04)*/
         	$(".titleCompareMajor").hide();
-        	$("hr#line-3").hide();
         	$("#newStudentByYearByFacultyByMajorChart").hide();
         }
     });
 }
-/* END: function call model for newStudentByYearChart */
+
+/* END: Generate newStudentByYearChart(Chart-01) by Kendo */
+/* ################### END: Create code for generate newStudentByYearChart(Chart-01). #################### */
+
+
+
+/* ################### START: Create code for generate topTenHighSchoolChart(Chart-02). #################### */
 /* START Check event param top ten on pie chart*/
+
 $("#selectTop").change(function(){
-	//alert("change");
-	//alert($("#paramYearPie").text());
-topTenHighSchoolByYearFn(parseInt($("#paramYearPie").text()),$(this).val());
+//	alert("change");
+//	alert($("#paramYearPie").text());
+	topTenHighSchoolByYearFn(parseInt($("#paramYearPie").text()),$(this).val());
 });
-/* START: Generate Pie Chart(Chart-02) By Kendo */ 
+
+/* START: Generate topTenHighSchoolChart(Chart-02) By Kendo */ 
 function topTenHighSchoolChart(objData) {
     $("#topTenHighSchoolChart").kendoChart({
     	chartArea: {
@@ -122,8 +124,7 @@ function topTenHighSchoolChart(objData) {
             labels: {
                 visible: true,
                 background: "transparent",
-                template: "#= value#"
-               //template: "#= category #: #= value#%"
+                template: "#= value #"
             }
         },
         series: [{
@@ -134,14 +135,58 @@ function topTenHighSchoolChart(objData) {
         }],
         seriesColors: ["#0099FF", "#009900", "#CC66FF", "#CC6600", "#FFFF00", "#990066"],
         tooltip: {
-            visible: false,
-            format: "{0}%"
+            visible: true,
+            template: "#= category #, #= value # คน"
         }
     });
 }
-/* END: Generate Pie Chart02 By Kendo */
+/* END: Generate topTenHighSchoolChart(Chart-02) By Kendo */
 
-/* START: Generate BarChat(Chart-03) By Kendo */ 
+/* START: Call ajax for create topTenHighSchoolByYearFn(Chart-02) */
+var topTenHighSchoolByYearFn = function(paramYear,arSelectTop){
+	$.ajax({
+		url: "../Model/topTenHighSchoolByYear.jsp",
+		type:"get",
+		dataType:"json",
+		data:{"paramYear":paramYear,"paramTop":arSelectTop},
+		success:function(data){
+//			console.log(data);
+//			alert(data);
+			var color = ["#357EC7","#C38EC7","#438D80","#437C17","#FBB117","#990012","#E8ADAA","#C38EC7","#2B3856","#CCCCCC"];
+			var indexColor = 1;
+			var dataCloumn = "";
+			dataCloumn = "[";
+			$.each(data,function(index,indexEntry){
+				if(index==0){
+					dataCloumn+="{";
+					dataCloumn+="category:"+"\""+indexEntry[0]+"\",";
+					dataCloumn+="value:"+""+indexEntry[1]+",";
+					dataCloumn+="color:"+"\""+color[0]+"\"";
+					dataCloumn+="}";
+				}else{
+					dataCloumn+=",{";
+					dataCloumn+="category:"+"\""+indexEntry[0]+"\",";
+					dataCloumn+="value:"+""+indexEntry[1]+",";
+					dataCloumn+="color:"+"\""+color[indexColor++]+"\"";
+					dataCloumn+="}";
+				}										
+			});
+			dataCloumn+="]";
+			//alert(dataCloumn);
+			
+			var objData= eval("("+dataCloumn+")");
+			//console.log(objData);
+			topTenHighSchoolChart(objData);							
+		}
+	});
+};
+/* END: Call ajax for create topTenHighSchoolByYearFn(Chart-02) */
+/* ################### END: Create code for generate topTenHighSchoolByYearChart(Chart-02). #################### */
+
+
+
+/* ################### START: Create code for generate newStudentByYearByFacultyFn(Chart-03). #################### */
+/* START: Generate Bar newStudentByYearByFacultyFn(Chat-03) By Kendo */ 
 function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesColumnData) {
     $("#newStudentByYearByFacultyChart").kendoChart({
     	chartArea: {
@@ -149,12 +194,13 @@ function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesC
     	},
         legend: {
             visible: false
+            
         },
         series: [{
         	type: "column",
             name: "จำนวนนักศึกษา",
             data: objSeriesColumnData,
-            color: "#0066FF"
+            color: "#357EC7"
         },{
         	type:"line",
         	data: objSeriesLineData,
@@ -173,7 +219,8 @@ function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesC
         categoryAxis: {
             categories: objCateData,
             labels: {
-                rotation: 60
+                rotation: 60,
+                template: kendo.template("#:value.substring(0,value.indexOf(\"/\"))#")
               },
             majorGridLines: {
                 visible: false
@@ -181,7 +228,7 @@ function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesC
         },
         tooltip: {
             visible: true,
-            template: "#= series.name #: #= value #"
+            template: kendo.template("#= category.substring(0,category.indexOf(\"/\")) # #= value # คน")
         },
         legend: {
         	position: "bottom",
@@ -191,21 +238,69 @@ function newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesC
             }
         },
         seriesClick:function(e){
-        	//alert(e.category);
-        	//show layout bottom
+//        	alert(e.category);
+//        	show layout bottom
         	$("#buttomContent").show();
         	
-        	var paramYear = $(".categoryParam").val();
+        	var paramYear = $(".yearSelected").val();
         	$(".titleCompareMajor").show();
         	$("#newStudentByYearByFacultyByMajorChart").show();
-        	newStudentByYearByFacultyByMajorFn(paramYear,e.category);
-        	$("hr#line-3").show();
+        	newStudentByYearByFacultyByMajorFn(paramYear, e.category.substring(e.category.indexOf("/")+1));
         }
     });
 }
-/* END: Generate Bar Chat03 By Kendo */
+/* END: Generate Bar newStudentByYearByFacultyFn(Chat-03) By Kendo */
 
-/* START: Generate BarChat(Chart-04) By Kendo */ 
+/* START: Call Ajax for create newStudentByYearByFacultyFn(Chart-03) */
+var newStudentByYearByFacultyFn = function(paramYear){
+	$.ajax({
+		url: "../Model/newStudentByYearByFaculty.jsp",
+		type:"get",
+		dataType:"json",
+		data:{"paramYear":paramYear},
+		success:function(data){
+//			console.log(data);
+//			alert(data);
+			var seriesColumnData="";
+			var seriesLineData="";
+			var facuName="";
+			seriesColumnData+="[";
+			seriesLineData+="[";
+			facuName+="[";
+			
+			$.each(data,function(index,indexEntry){
+//				alert(indexEntry[0]);
+				
+				if(index==0){
+					seriesColumnData+=""+indexEntry[2]+"";
+					seriesLineData+=""+indexEntry[3]+"";
+					facuName+="\""+""+indexEntry[1]+"/"+indexEntry[0]+"\""+"";
+				}else{
+					seriesColumnData+=","+indexEntry[2];
+					seriesLineData+=","+indexEntry[3]+"";
+					facuName+=","+"\""+indexEntry[1]+"/"+indexEntry[0]+"\""+"";
+				}
+			});
+			seriesColumnData+="]"; //alert(seriesColumnData);
+			seriesLineData+="]"; //alert(seriesLineData);
+			facuName+="]"; //alert(facuName);
+			           				
+			/*Convert text to object json by eval().*/
+			var objSeriesColumnData = eval("("+seriesColumnData+")");
+			var objSeriesLineData = eval("("+seriesLineData+")");
+			var objCateData = eval("("+facuName+")");
+//			alert(dataCloumn);
+			newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesColumnData);							
+		}
+	});
+};
+/* END: Call Ajax for create newStudentByYearByFacultyFn(Chart-03) */
+/* ################### END: Create code for generate newStudentByYearByFacultyFn(Chart-03). #################### */
+
+
+
+/* ################### START: Create code for generate newStudentByYearByFacultyByMajorChart(Chart-04). #################### */
+/* START: Generate newStudentByYearByFacultyByMajorChart(Chart-04) By Kendo */ 
 function newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLineData, objcategoriesData) {
     $("#newStudentByYearByFacultyByMajorChart").kendoChart({
     	chartArea: {
@@ -221,7 +316,7 @@ function newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLin
         series: [{
             name: "จำนวนนักศึกษา",
             data: objSeriesColumnData,
-            color: "#0066FF"
+            color: "#357EC7"
         },{
         	name:"แผน",
         	type:"line",
@@ -252,44 +347,52 @@ function newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLin
         }
     });
 }
-/* END: Generate BarChat(Chart-04) By Kendo */ 
+/* END: Generate newStudentByYearByFacultyByMajorChart(Chart-04) By Kendo */ 
 
-
-/* START: call ajax for create chart(02) topTenHighSchoolChart */
-var topTenHighSchoolByYearFn = function(paramYear,arSelectTop){
+/* START: Call Ajax for create newStudentByYearByFacultyChart(chart-04) */
+var newStudentByYearByFacultyByMajorFn = function(paramYear,paramFacuId){
 	$.ajax({
-		url: "../Model/topTenHighSchoolByYear.jsp",
-		type:"get",
-		dataType:"json",
-		data:{"paramYear":paramYear,"paramTop":arSelectTop},
+		url: "../Model/newStudentByYearByFacultyByMajor.jsp",
+		type: "get",
+		dataType: "json",
+		data:{"paramYear":paramYear, "paramFacuId":paramFacuId},
 		success:function(data){
-			//console.log(data);
 			//alert(data);
-			var dataCloumn = "";
-			dataCloumn = "[";
-			$.each(data,function(index,indexEntry){
-				if(index==0){
-					dataCloumn+="{";
-					dataCloumn+="category:"+"\""+indexEntry[0]+"\",";
-					dataCloumn+="value:"+""+indexEntry[1];
-					dataCloumn+="}";
-				}else{
-					dataCloumn+=",{";
-					dataCloumn+="category:"+"\""+indexEntry[0]+"\",";
-					dataCloumn+="value:"+""+indexEntry[1];	
-					dataCloumn+="}";
-				}										
-			});
-			dataCloumn+="]";
-			//alert(dataCloumn);
+			var seriesColumnData="";
+			var seriesLineData="";
+			var categoriesData="";
+			seriesColumnData+="[";
+			seriesLineData+="[";
+			categoriesData+="[";
 			
-			var objData= eval("("+dataCloumn+")");
-			//console.log(objData);
-			topTenHighSchoolChart(objData);							
+			$.each(data,function(index,indexEntry){
+				//alert(indexEntry[0]);					
+				if(index==0){
+					seriesColumnData+=""+indexEntry[1]+"";
+					seriesLineData+=""+indexEntry[2]+"";
+					categoriesData+="\""+""+indexEntry[0]+""+"\"";
+				}else{
+					seriesColumnData+=","+indexEntry[1];
+					seriesLineData+=","+indexEntry[2]+"";
+					categoriesData+=","+"\""+indexEntry[0]+"\""+"";
+				}
+			});
+			seriesColumnData+="]"; 
+			seriesLineData+="]"; 
+			categoriesData+="]"; 
+			/*Convert text to object json by eval().*/
+			var objSeriesColumnData = eval("("+seriesColumnData+")");
+			var objSeriesLineData = eval("("+seriesLineData+")");
+			var objcategoriesData = eval("("+categoriesData+")");
+			console.log(objcategoriesData);
+			newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLineData, objcategoriesData);
 		}
 	});
 };
-/* END: call ajax for create chart(02) topTenHighSchoolChart */
+/* END: Call Ajax for create newStudentByYearByFacultyChart(chart-04) */
+/* ################### START: Create code for generate newStudentByYearByFacultyByMajorChart(Chart-04). #################### */
+
+
 	
 ///* START: Event chage dropdownlist selectTop */
 //$("#selectTop").live("change",function(){
@@ -297,92 +400,3 @@ var topTenHighSchoolByYearFn = function(paramYear,arSelectTop){
 //	topTenHighSchoolByYearFn($(this).val());
 //});
 ///* END: Event chage dropdownlist selectTop */
-
-
-/* START: Call Ajax for create chart(03) newStudentByYearByFacultyChart */
-var newStudentByYearByFacultyFn = function(paramYear){
-	$.ajax({
-		url: "../Model/newStudentByYearByFaculty.jsp",
-		type:"get",
-		dataType:"json",
-		data:{"paramYear":paramYear},
-		success:function(data){
-			//console.log(data);
-			//alert(data);
-			var seriesColumnData="";
-			var seriesLineData="";
-			var facuName="";
-			seriesColumnData+="[";
-			seriesLineData+="[";
-			facuName+="[";
-			
-			$.each(data,function(index,indexEntry){
-				//alert(indexEntry[0]);
-				
-				if(index==0){
-					seriesColumnData+=""+indexEntry[1]+"";
-					seriesLineData+=""+indexEntry[2]+"";
-					facuName+="\""+""+indexEntry[0]+""+"\"";
-				}else{
-					seriesColumnData+=","+indexEntry[1];
-					seriesLineData+=","+indexEntry[2]+"";
-					facuName+=","+"\""+indexEntry[0]+"\""+"";
-				}
-			});
-			seriesColumnData+="]"; //alert(seriesColumnData);
-			seriesLineData+="]"; //alert(seriesLineData);
-			facuName+="]"; //alert(facuName);
-			           				
-			/*Convert text to object json by eval().*/
-			var objSeriesColumnData = eval("("+seriesColumnData+")");
-			var objSeriesLineData = eval("("+seriesLineData+")");
-			var objCateData = eval("("+facuName+")");
-			//alert(dataCloumn);
-			newStudentByYearByFacultyChart(objCateData,objSeriesLineData,objSeriesColumnData);							
-		}
-	});
-};
-/* END: Call Ajax for create chart(03) newStudentByYearByFacultyChart */
-
-
-/* START: Call Ajax for create chart(04) newStudentByYearByFacultyChart */
-	var newStudentByYearByFacultyByMajorFn = function(paramYear,paramFacuName){
-		$.ajax({
-			url: "../Model/newStudentByYearByFacultyByMajor.jsp",
-			type: "post",
-			dataType: "json",
-			data:{"paramYear":paramYear, "paramFacuName":paramFacuName},
-			success:function(data){
-				//alert(data);
-				var seriesColumnData="";
-				var seriesLineData="";
-				var categoriesData="";
-				seriesColumnData+="[";
-				seriesLineData+="[";
-				categoriesData+="[";
-				
-				$.each(data,function(index,indexEntry){
-					//alert(indexEntry[0]);					
-					if(index==0){
-						seriesColumnData+=""+indexEntry[1]+"";
-						seriesLineData+=""+indexEntry[2]+"";
-						categoriesData+="\""+""+indexEntry[0]+""+"\"";
-					}else{
-						seriesColumnData+=","+indexEntry[1];
-						seriesLineData+=","+indexEntry[2]+"";
-						categoriesData+=","+"\""+indexEntry[0]+"\""+"";
-					}
-				});
-				seriesColumnData+="]"; 
-				seriesLineData+="]"; 
-				categoriesData+="]"; 
-				/*Convert text to object json by eval().*/
-				var objSeriesColumnData = eval("("+seriesColumnData+")");
-				var objSeriesLineData = eval("("+seriesLineData+")");
-				var objcategoriesData = eval("("+categoriesData+")");
-				console.log(objcategoriesData);
-				newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLineData, objcategoriesData);
-			}
-		});
-	};
-/* END: Call Ajax for create chart(04) newStudentByYearByFacultyChart */
