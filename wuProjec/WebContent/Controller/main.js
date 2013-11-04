@@ -10,6 +10,7 @@ $(document).ready(function(){
 	$("[href='#tabs-4']").hide();
 	$("[href='#tabs-5']").hide();
 	
+	/* Contorl Tabs */
 /* ############################# START: Event Click Tabs-1  ############################# */
 	$("[href='#tabs-1']").click(function(){
 		$.ajax({
