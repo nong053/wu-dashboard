@@ -47,7 +47,7 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
         },
         tooltip: {
             visible: true,
-            template: "#= series.name #: #= value #",
+            template: "#= category #, #= value # คน",
         },
         seriesClick:function(e){
         	/*start layout center and bottom*/
