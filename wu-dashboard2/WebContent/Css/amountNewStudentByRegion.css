@@ -1,0 +1,55 @@
+#tabs{
+	width:auto;
+	height:auto;
+}
+#content{
+	/*width:950px;*/
+	height:700px;
+	margin:auto;
+	/*border: 1px solid red;*/
+	
+}
+#contantBody{
+	/*box-shadow: 0 0 10px #888888;*/
+}
+#content .contentPanelL{
+	width:444px;
+	height:600px;
+	float:left;
+	position:relative;
+	/*border: 1px solid yellow;*/
+}
+.k-grid-content{
+	height:520px;
+}
+#content .contentPanelR{
+	width: 545px;
+	height:575px;
+	float:left;
+	/*border-right:1px solid gray;*/
+}
+#content .contentTitleChart{
+	width:948px;
+	height:80px;
+	margin:auto;
+	text-align:center;
+	/*border: 1px solid yellow;*/
+}
+#thaiMap{
+	width:450px; 
+	height:550px; 
+	margin:auto; 
+	padding-top:10px;
+	padding-left:11px;
+	position: absolute;
+	z-index: 1;
+}
+#content .contentPanelL .legend{
+	width:150px;
+	height:250px;
+	bottom:0px;
+	right:20px;
+	position: absolute;
+	z-index: 10;
+	/*border: 1px solid red;*/
+}

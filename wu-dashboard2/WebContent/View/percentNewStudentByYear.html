@@ -1,0 +1,49 @@
+<link class="style" href="../Css/percentNewStudentByYear.css" rel="stylesheet" type="text/css"> 
+<script src="../Controller/percentNewStudentByYear.js"></script>
+
+<div id="contentBody">
+<!--START: topContent area -->
+<div id="topContent"> 
+	<div id="contentTitleChart" class="topTitleChart">
+		<br/> % จำนวนนักศึกษาใหม่เทียบกับแผนตามสำนักวิชา  ปีการศึกษา <label class="asOfYear"></label> <br/> 
+		(คลิกที่แต่ละสำนักวิชาเพื่อดูรายละเอียดในระดับหลักสูตรด้านล่าง) <br/>
+	</div>
+	<div class="legend-1" style="font:11px Tahoma">
+		<table style="margin: auto; height:10px;"> 
+			<tr> 
+				<td style="background-color:red; width:20px; height:5px;"></td> <td></td> <td style="width:28%">0% - 33%</td> 
+				<td style="background-color:yellow; width:20px; height:5px;"></td> <td></td> <td style="width:28%">33% - 66%</td> 
+				<td style="background-color:green; width:20px; height:5px;"></td> <td></td> <td style="width:28%">66% - 100%</td> 
+			</tr>
+		</table>
+	</div><br/>
+	<div id="contentGauges">
+		<!-- Create Gauges by percentCompareByFacultyFn() -->
+	</div>
+	<br style="clare:both">
+</div>
+<!--END: topContent area -->
+
+<br/>
+
+<!--START: bottomContent area -->
+<div id="bottomContent"> 
+	<div id="contentTitleChart" class="bottomTitleChart">
+		<br/> % จำนวนนักศึกษาใหม่เทียบกับแผนตามหลักสูตร  ปีการศึกษา <label class="asOfYear"></label><br/> 
+		สำนักวิชา<label class="asOfMajor"></label> <br/>
+	</div>
+	<div class="legend-2" style="font:11px Tahoma">
+		<table style="margin: auto; height:10px;"> 
+			<tr> 
+				<td style="background-color:red; width:20px; height:5px;"></td> <td></td> <td style="width:28%">0% - 33%</td> 
+				<td style="background-color:yellow; width:20px; height:5px;"></td> <td></td> <td style="width:28%">33% - 66%</td> 
+				<td style="background-color:green; width:20px; height:5px;"></td> <td></td> <td style="width:28%">66% - 100%</td> 
+			</tr>
+		</table>	
+	</div><br/>
+	<div id="contentGauges">
+		<!-- Create Gauges by percentCompareByFacultyFn() -->
+	</div>
+	<br style="clare:both">
+</div>
+</div>

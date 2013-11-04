@@ -1,0 +1,46 @@
+<link class="style" href="../Css/amountNewStudentByType.css" rel="stylesheet" type="text/css">
+<script src="../Controller/amountNewStudentByType.js"> </script>
+
+	<div id="topConten">
+		<div class="contentTitle"> 
+			<br/>จำนวนนักศึกษาใหม่ตามประเภทการรับ  ปีการศึกษา 2556 <br/> (คลิกที่แต่ละสำนักวิชาและประเภทการรับเข้าเพื่อดูรายละเอียดในกราฟด้านล่าง) 
+		</div>
+		<br/>
+		<!-- Start Kendo Chart -->
+		<div id="newStudentByType" style="width:940px; height:350px; margin:auto;"> </div>
+		<!-- End Kendo Chart -->
+	</div>
+	<br/>
+	<!--<hr id="line-1" style="width:95%; Color:#D3D3D3;"> <br/>-->
+	<div id="buttomContent">
+		<div class="panel">
+			<div class="panelChartTitle">
+				<br/> 
+				GPA ระดับ ม.ปลายเฉลี่ยของนักศึกษาใหม่ 
+				 ปีการศึกษา <label class="asOfYear"><!-- asOfYear --></label> <br/> 
+				 ประเภท <label class="asOfType"><!-- asOfType --></label> 
+				 สำนักวิชา การจัดการ <label class="asOfMajor"><!-- asOfMajor --></label> <br/> 
+			</div>
+			<br/>
+			<!-- Start Kendo Chart -->
+			<div id="averageGpaByYear" style="width:470px; height:350px; margin:auto;"> </div>
+			<!-- End Kendo Chart -->
+			<br/>
+		</div>
+		
+		<div class="panel">
+			<div class="panelChartTitle"> 
+				<br/>
+				จำนวนนักศึกษาใหม่ตามหลักสูตร  
+				ปีการศึกษา <label class="asOfYear"><!-- asOfYear --></label> <br/> 
+				ประเภท <label class="asOfType"><!-- asOfType --></label> 
+				สำนักวิชา <label class="asOfMajor"><!-- asOfMajor --></label> <br/>
+			</div>
+			<br/>
+			<!-- Start Kendo Chart -->
+			<div id="newStudentByMajor" style="width:470px; height:350px; margin:auto;"> </div>
+			<!-- End Kendo Chart -->
+			<br/>
+		</div>
+		<br style="clear:both">
+	</div>

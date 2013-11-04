@@ -1,0 +1,652 @@
+
+/* demo slider*/
+*{
+	font:16px Tahoma;
+}
+
+#loading {
+	display: none;
+	position: absolute;
+	z-index: 10000;
+	color: #000000;
+	background: #ffffff;
+	font-weight: bold;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #FFAF0F;
+}
+
+#loading #loadText {
+	display: inline;
+}
+
+.touchslider-demo .touchslider-viewport {
+	height: 425px;
+	border: 0px solid #fff1e0;
+	background: #fff1e0;
+	-webkit-border-radius: 6px;
+	        border-radius: 6px;
+}
+.touchslider-demo .touchslider-item {
+	/*height: 425px;*/
+	overflow: hidden;
+}
+.touchslider-demo .touchslider-nav {
+	text-align: center;
+	margin-top: 0px;
+	padding: 0px;
+	background:#8B4513;
+	/*border-radius:5px;*/
+	margin:0px;
+	height:40px;
+	
+}
+.touchslider-demo .touchslider-nav a {
+	cursor: pointer;
+	color: #000;
+}
+.touchslider-demo .touchslider-nav a:active {
+	background: #689db2;
+}
+
+.touchslider-nav {
+	font: bold 16px/16px Georgia;
+}
+.touchslider-demo .touchslider-prev {
+	position: relative;
+	margin-right: 16px;
+	height: 16px;
+	background: #fff;
+	width: 100px;
+	display: inline-block;
+	padding: 0 0 0 10px;
+	-webkit-border-radius: 12px 0 0 12px;
+	        border-radius: 12px 0 0 12px;
+}
+.touchslider-demo .touchslider-next {
+	position: relative;
+	margin-left: 16px;
+	width: 100px;
+	height: 16px;
+	background: #fff;
+	display: inline-block;
+	-webkit-border-radius: 0 12px 12px 0;
+	        border-radius: 0 12px 12px 0;
+}
+.touchslider-demo .touchslider-next-in {
+	position: absolute; /* fix safari render font */
+	right: 10px;
+}
+.touchslider-demo .touchslider-prev-in {
+	position: absolute;
+	left: 10px;
+}
+.touchslider-demo .touchslider-nav-item {
+	width: 16px;
+	height: 16px;
+	background: #fff;
+	margin: 0 3px;
+	display: inline-block;
+	-webkit-border-radius: 12px;
+	        border-radius: 12px;
+	}
+.touchslider-demo .touchslider-nav-item-current {
+	background: #cff0ff;
+}
+
+/* social slider */
+.section-download {
+	position: relative;
+	padding-right: 230px;
+}
+.social {
+	width: 200px;
+	position: absolute;
+	right: 20px;
+	top: 0;
+}
+.touchslider-social .touchslider-nav {
+	text-align: center;
+	margin-bottom: 6px;
+}
+.touchslider-social .touchslider-nav-item {
+	opacity: .5;
+	padding: 0 2px;
+}
+.touchslider-social .touchslider-nav-item-current {
+	opacity: 1;
+}
+/*
+btHideShow
+titleDashboardName
+Store Management
+*/
+/*Manage by Custom Start*/
+#titleDashboardName{
+	display:inline;
+	color:white;
+	font-size:20px;
+	font-weight:bold;
+	margin-left:10px;
+	padding:4px;
+	float:left;
+
+}
+#boxL{
+	width:580px;
+	float:left;
+	text-align:left;
+	/*margin: 2px 2px 2px 10px;*/
+	margin: 0px;
+}
+#boxR{
+	float: right;
+    margin: 5px 5px 5px 50px;
+	position:absolute;
+	text-align:center;
+
+}
+
+#contentArea{
+	overflow:hidden;
+	
+}
+#contentArea #leftMenu{
+	
+	left:-200px;
+	height:300px;
+	background:black;
+	float:left;
+	position: relative;
+	z-index:21;
+	opacity:1;	
+}
+
+#contentArea #leftMenu #boxContent{
+	position: absolute;
+	width:200px;
+	height:auto;
+}
+#contentArea #leftMenu #boxContent #boxTitle{
+	
+	background:#8B4513;
+	width:200px;
+	padding-top:5px;
+	padding-button:5px;
+	font-weight:bold;
+	
+}
+#contentArea #leftMenu #boxContent #boxTitle #txt{
+	padding:5px;
+	color:white;
+}
+#contentArea #leftMenu #boxContent ul{
+	position: absolute;
+	width:200px;
+	padding:0px;
+	margin:0px;
+	
+}
+#contentArea #leftMenu #boxContent ul li{
+	background:#FEEEBD;
+	display:block;
+	border-bottom:1px solid #cccccc;
+	
+}
+
+
+#contentArea #leftMenu #boxContent ul li a{
+	display:block;
+	text-decoration:none;
+	color:black;
+	padding:5px;
+	
+}
+#contentArea #leftMenu #boxContent ul li.selected{
+	background:#8B4513;
+	display:block;
+	color:white;
+	font-weight:bold;
+	padding:5px;
+}
+
+#contentArea #leftMenu #boxContent ul li a:hover{
+	background:white;
+	display:block;
+	color:black;
+	
+	
+}
+
+
+
+
+.contentGraph{
+	/*width:1018px;*/
+	height:425px;
+	background:white;
+	
+}
+.contentGraph #settingArea{
+	
+	position:relative;
+	z-index:20;
+	width:1000px;
+	background:red;
+}
+.contentGraph #settingArea .setting{
+	padding:15px;
+	float:right;
+	background:url("../images/gear.png") repeat-x scroll 49.7% 50% #FECE2F;
+	border-radius:5px;
+	cursor:pointer;
+	border: 1px solid #D19405;
+    color: #4C3000;
+    font-weight: bold;
+    position: absolute;
+    left:950px;
+    z-index:10000;
+    width:50px;
+    height:35px;
+	/*border-color:#8B4513;*/
+	
+}
+.contentGraph #settingArea .setting a:hover{
+	background:red;
+	
+}
+.contentGraph .graphTop{
+	height:370px;
+	border-bottom:1px solid #cccccc;
+	border-radius:1px;
+	margin-bottom: 2px;
+	padding:2px;
+	padding-left:5px;
+	/*background:url("images/world-map_h400w729.png") repeat-x;*/
+}
+.contentGraph .graphBottom{
+	margin-top:2px;
+	border-radius:1px;
+
+}
+.contentGraph .graphBottom .graphDetail{
+	width:540px;
+	/*padding:5px;*/
+	float:left;
+	font-weight:bold;
+	padding-left:10px;
+	font-size: 20px;
+	
+}
+.contentGraph .graphBottom .graphAddFav{
+	width:300px;
+	float:right;
+	padding-right:5px;
+}
+button.addMyView{
+	/*
+	padding:5px;
+	padding:15px;
+	*/
+	background:url("../images/ui-bg_gloss-wave_60_fece2f_500x100.png") repeat-x scroll 50% 50% #FECE2F;
+	border-radius:5px;
+	cursor:pointer;
+	border: 1px solid #D19405;
+    color: #4C3000;
+    font-weight: bold;
+}
+button.hideShow{
+	width:50px;
+	height:35px;
+	float:left;
+	padding:15px;
+	background:url("../images/bar.png") repeat-x scroll 50.5% 50% #FECE2F;
+	border-radius:5px;
+	cursor:pointer;
+	border: 1px solid #D19405;
+    color: #4C3000;
+    font-weight: bold;
+  	margin-top:2px;
+   
+    z-index:10000;
+    width:50px;
+	/*border-color:#8B4513;*/
+}
+
+
+
+#setParamForm{
+	/*
+	width:480px;
+	height:260px;
+	*/
+	position:absolute;
+	z-index:20000;
+	display:show;
+	/*background:white;*/
+	opacity:1;
+	border-radius:5px;
+	/*border:1px solid #D19405;*/
+	padding:5px;
+	/*left: 240px;*/
+	
+	
+}
+.areaSettingExternal{
+	position:absolute;
+	z-index:2000;
+	display:none;
+}
+	
+#contentGraph{
+	
+	width:1010px;
+	hegiht:auto;
+}
+
+.setParamArea{
+	
+}
+.setParamArea .setParamHeader{
+	width:auto;
+	margin-bottom:5px;
+	
+	
+	
+}
+.setParamArea .setParamHeader .text{
+	padding:6px;
+	/*background:#FECE2F;*/
+	font-weight:bold;
+	border-radius:5px;
+	border:1px solid #D19405;
+	background: url("../images/ui-bg_gloss-wave_60_fece2f_500x100.png") repeat-x scroll 50% 50% #FECE2F;
+	
+}
+.setParamArea .setParam{
+	width:auto;
+	height:auto;
+	
+	
+}
+
+.setParamArea .btnArea{
+	width:auto;
+	
+}
+.setParamArea .btnArea .btn{
+	margin-left:93px;
+	padding:5px;
+}
+
+
+.ball{
+	border-radius:100%;
+	width:30px;
+	height:30px;
+	background:white;
+}
+.ballGreen{
+	border-radius:100%;
+	width:30px;
+	height:30px;
+	background:green;
+}
+.ballRed{
+	border-radius:100%;
+	width:30px;
+	height:30px;
+	background:red;
+}
+div#selectFav ul{
+	margin:0px;
+	padding:5px;
+}
+
+div#selectFav ul li{
+	
+	height:17px;
+	list-style-type: none;
+	display:block;
+	
+	/*background:blue;*/
+	
+	
+}
+div#selectFav ul li .boxSlot{
+	width:380px;
+	
+}
+#selectFav ul li .slotFavName a{
+    display:block;
+	border-bottom:1px solid white;
+	width:320px;
+	padding:5px;
+	text-decoration:none;
+}
+#selectFav ul li .slotFavName a:hover{
+	display:block;
+	background:white;
+}
+
+
+#selectFav ul li .statusFav{
+	border-radius:100%;
+	width:25px;
+	height:25px;
+	/*background:green;*/
+	display:show;
+	float:left;
+
+}
+#selectFav ul li .slotFavName{
+	
+	float:left;
+	margin-left:5px;
+	
+}
+.removeMyView{
+	padding:5px;
+}
+.ui-button{
+	padding:5px;
+}
+
+#listCate{
+	padding:6px;
+	/*background:#FECE2F;*/
+	font-weight:bold;
+	width:5px;
+	
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+	
+	border:1px solid #D19405;
+	background: url("../images/ui-bg_gloss-wave_60_fece2f_500x100.png") repeat-x scroll 50% 50% #FECE2F;
+	
+}
+.chart{
+	margin-left:45px;
+}
+#contentArea .subGraph{
+
+
+	position:relative;
+
+
+	
+}
+#contentArea .subGraph #boxSubGraph{
+	
+	position:absolute;
+	padding:0px;
+	z-index:20;
+	
+	width:445px;
+	height:420px;
+	left:-370px;
+	top:0px;
+	/*background:white;*/
+	border-radius:0px 5px 5px 0px;
+	opacity:0.95;
+	
+}
+#contentArea .subGraph #boxSubGraph #subMenuR{
+	
+	float:left;
+	width:370px;
+	height:445px;
+	background:black;
+	opacity:0.80;
+	
+}
+#contentArea .subGraph #boxSubGraph #areaBtnShowHideSubMenu{
+	
+	float:left;
+	width:45px;
+	height:420px;
+	margin-left:2px;
+	
+	
+}
+#contentArea .subGraph #boxSubGraph #areaBtnShowHideSubMenu #btnShowHideSubMenu {
+	cursor:pointer;
+	margin-top:140px;
+	width:45px;
+	height:140px;
+	border-radius:0px 5px 5px 0px;
+	border:1px solid #8B4513;
+	background:#FECE2F;
+	
+	background:url("../images/ui-bg_gloss-wave_60_fece2f_500x100.png") repeat-x scroll #FECE2F;
+	border: 1px solid #D19405;
+    color: #4C3000;
+    z-index:10000;
+    
+
+	
+}
+#contentArea .subGraph #boxSubGraph #areaBtnShowHideSubMenu #btnShowHideSubMenu #txt{
+	
+   font-weight: bold;
+    left: -35px;
+    position: relative;
+    top: 0px;
+    -webkit-transform: rotate(-90deg);   
+    -moz-transform: rotate(-90deg);   
+    transform: rotate(-90deg);   
+    position:relative; 
+    width: 120px;
+	
+}
+
+
+#contentArea .subGraph .cateTitle {
+	
+	padding:5px;
+	
+	color:white;
+	border-bottom:1px solid #333333;
+	
+	
+}
+#contentArea .subGraph .cateTitle>.titleR{
+	font-weight:bold;
+}
+.iconL{
+	width:20px;
+	float:left;
+}
+.titleR{
+	float:left;
+	
+	
+}
+#contentArea .subGraph #boxSubGraph ul{
+	padding:0px;
+	margin:0px;
+	width:365px;
+
+}
+#contentArea .subGraph #boxSubGraph ul li{
+	/*background:#FEEEBD;*/
+	display:block;
+	border-bottom:1px solid #333333;
+	/*padding:5px;
+	 background-image: url("../jqueryUI/css/custom-theme/images/ui-icons_d19405_256x240.png");
+	 background-repeat: no-repeat;
+	 */
+	 
+
+
+}
+
+
+
+#contentArea .subGraph #boxSubGraph ul li a{
+	display:block;
+	text-decoration:none;
+	color:white;
+	padding:5px;
+	padding-left:10px;
+	
+}
+#contentArea .subGraph #boxSubGraph ul li a .iconL{
+	
+	width:50px;
+}
+#contentArea .subGraph #boxSubGraph ul li a .titleR{
+	
+	
+}
+#contentArea .subGraph #boxSubGraph ul li.selected{
+	background:#8B4513;
+	display:block;
+	color:white;
+	font-weight:bold;
+	padding:5px;
+}
+
+#contentArea .subGraph #boxSubGraph ul li a:hover{
+	background:white;
+	display:block;
+	color:black;
+	
+	
+}
+
+#categroryNameTitle{
+	display:inline;
+	font-size:20px;
+	font-weight: bold;
+	
+}
+.graphBoxArea{
+
+	background:white;
+	border-radius:5px;
+	/*border:1px solid #cccccc;*/
+	float:left;
+	/*margin:5px;*/
+	height: 465px;
+   /* width: 1018px;*/
+
+	
+}
+.listSequence{
+	width:150px;
+	margin-right:5px;
+}
+/* GRAPH2 START*/
+.chartMTD{
+	float:left;
+	
+}
+.chartYTD{
+	float:left;
+	margin-left:5px;
+}
+
+/* GRAPH2 END*/
+
+/*Manage by Custom End*/

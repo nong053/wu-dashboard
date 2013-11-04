@@ -1,0 +1,61 @@
+body{
+	padding:opx;
+	margin:0px;
+	font:13px Tahoma; 
+}
+.k-tooltip{
+	color:white;
+}
+#body{
+	width:1000px;
+	height:;
+	margin:auto;
+	/*border:1px #cccccc solid;*/
+}
+#body #header{
+	border-radius: 5px;
+	height:auto;
+	padding:5px;
+	background:#008ec3;
+	border-bottom-radius:5px;
+	color:white;
+	font-weight:bold;
+}
+#body #header #paramArea{
+	width:1000px;
+	height:30px;
+	/*border:1px #cccccc solid;*/
+}
+#body #header #paramArea #paramTitle{
+	width:200px;
+	float:left;
+	padding:5px;
+	text-align:right;
+	/*border:1px #cccccc solid;*/
+}
+#body #header #paramArea #paramYearList{
+	width:150px;
+	float:left;
+	padding:0px;
+	/*border:1px #cccccc solid;*/
+}
+#body #header #paramArea #paramPreList{
+	width:150px;
+	float:left;
+	padding:0px;
+	/*border:1px #cccccc solid;*/
+}
+#body #header #submit{
+	width:200px;
+	float:left;
+	padding:0px;
+	text-align:right;
+	/*border:1px #cccccc solid;*/
+	
+}
+
+#body #maincontent{
+
+}
+
+
