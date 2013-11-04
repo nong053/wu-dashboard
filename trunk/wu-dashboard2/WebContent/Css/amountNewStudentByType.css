@@ -1,35 +1,37 @@
 #topConten{
-	width:950px;
+	width:980px;
 	height:auto;
-	margin:auto;
+	margin:10px auto auto;
 	/*box-shadow: 0 0 10px #888888;*/
-	/*border: 1px solid blue;*/
+	border: 1px solid #CCCCCC;
 }
 #topConten .contentTitle{
 	height:auto;
 	text-align:center;
 	font-weight:bold;
+	padding: 5px;
 	/*border:1px solid red;*/
 }
 
 #buttomContent{
-	width:950px;
+	width:1000px;
 	height:auto;
 	margin:auto;
 	/*box-shadow: 0 0 10px #888888;*/
-	/*border: 1px solid blue;*/
+	/*border: 1px solid #CCCCCC;*/
 }
 #buttomContent .panel{
-	width:473px;
+	width:484px;
 	height:auto;
 	float:left;
-	margin:auto;
+	margin:5px;
 	text-align:center;
-	/*border: 1px solid red;*/
+	border: 1px solid #CCCCCC;
 }
 #buttomContent .panel .panelChartTitle{
-	height:60px;
+	height:40px;
 	teat-align:center;
 	font-weight:bold;
-	/*border:1px solid blue;*/
+	padding: 5px;
+	/*border:1px solid #CCCCCC;*/
 }

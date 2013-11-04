@@ -1,9 +1,10 @@
 /* Control object in page. */
+$(".asOfYear").text($(".yearSelected").val());
 $("div#buttomContent").hide();
 $(".panel").hide();
 $(".panelChartTitle").hide();
-//var s = "1234567890";
-//alert(s.substring(s.indexOf(5)+1));
+
+
 /* #################### START: Create code for generate newStudentByType Chart (chart-01). #################### */
 /* START: Generate newStudentByType(chart-01) By Kendo */
 function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCategories, sumSeries) {
@@ -37,7 +38,7 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
 				name: "Admissions",
 				name2: "3",
 				data: objSeriesThird,
-				color: "#ACFA58"
+				color: "#6AA121"
 		}],
 		valueAxis: {
 			max: 100,
@@ -76,7 +77,7 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
 			amountNewStudentByMajorFn(e.series.name2,e.category.substring(0,2));
 				
 			//ChartTitle
-			$(".asOfYear").text($("#embParamYear").val());
+			$(".asOfYear").text($(".yearSelected").val());
 			$(".asOfType").text(e.series.name.substring(2));
 			$(".asOfMajor").text(e.category.substring(3));
 		}
@@ -92,7 +93,7 @@ var amountNewStudentByTypeFn = function(){
 		url: "../Model/amountNewStudentByType.jsp",
 		type: "get",
 		dataType: "json",
-		data:{"paramYear":$("#embParamYear").val()},
+		data:{"paramYear":$(".yearSelected").val()},
 		success:function(data){
 			if(data != ""){
 				var seriesFirst="";
@@ -197,7 +198,7 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
 		 url: "../Model/avgGpaByfacuByYear.jsp",
 		 type: "get", 
 		 dataType: "json",
-		 data:{"paramYear":$("#embParamYear").val(), "facuId":facuId, "typeId":TypeId},
+		 data:{"paramYear":$(".yearSelected").val(), "facuId":facuId, "typeId":TypeId},
 		 success:function(data){
 			 if(data != ""){
 	 				var seriesData="";
@@ -272,7 +273,7 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
     		   url: "../Model/amountNewStudentByMajorByTypeByYear.jsp",
     		   type: "post",
     		   dataType: "json",
-    		   data:{"paramYear":$("#embParamYear").val(), "facuId":facuId, "typeId":typeId},
+    		   data:{"paramYear":$(".yearSelected").val(), "facuId":facuId, "typeId":typeId},
     		   success:function(data){
     			   if(data != ""){
     				   /* total new student by year, faculty and type. (select from newStudentByType) */
