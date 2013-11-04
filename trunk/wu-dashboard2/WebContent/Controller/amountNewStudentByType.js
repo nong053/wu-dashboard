@@ -4,10 +4,9 @@ $(".panel").hide();
 $(".panelChartTitle").hide();
 //var s = "1234567890";
 //alert(s.substring(s.indexOf(5)+1));
-/* #################### START: Create code for generate newStudentByType Chart. #################### */
+/* #################### START: Create code for generate newStudentByType Chart (chart-01). #################### */
 /* START: Generate newStudentByType(chart-01) By Kendo */
 function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCategories, sumSeries) {
-	
 	
 	$("#newStudentByType").kendoChart({
     	chartArea: {
@@ -84,7 +83,6 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
 		
 	});
 	
-	
 }
 /* END: Generate newStudentByType(chart-01) By Kendo */
 
@@ -140,11 +138,11 @@ var amountNewStudentByTypeFn = function(){
 	});
 };
 /* END: Call Ajax for create newStudentByType(chart-01) */
-/* #################### END: Create code for generate newStudentByType Chart. #################### */     
+/* #################### END: Create code for generate newStudentByType Chart (chart-01). #################### */     
 
 
 
-/* #################### START: Create code for generate averageGpaByYear Chart. #################### */  
+/* #################### START: Create code for generate averageGpaByYear Chart (Chart-02). #################### */  
 /* START: Generate averageGpaByYear(Chart-02) By Kendo */
 function averageGpaByYear(objseriesData, objcategoriesData) {
 	$("#averageGpaByYear").kendoChart({
@@ -230,11 +228,11 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
 	 });  
 };
 /* END: Call ajax for create avgGpaByfacuByYear(Chart-02) */     
-/* #################### END: Create code for generate averageGpaByYear Chart. #################### */  
+/* #################### END: Create code for generate averageGpaByYear Chart (chart-02). #################### */  
  
 
 
-/* #################### START: Create code for generate newStudentByMajor Chart. #################### */  
+/* #################### START: Create code for generate newStudentByMajor Chart (chart-03). #################### */  
 /* START: Generate newStudentByMajor(Chart-03) By Kendo */
        function newStudentByMajor(objDataCloumn) {
            $("#newStudentByMajor").kendoChart({
@@ -242,9 +240,9 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
         		background: ""
         	},
         	legend: {
-//        	    labels: {
-//        	      template: kendo.template("#: category #%")
-//        	    },
+        	    labels: {
+        	      template: kendo.template("#: text.substring(0,text.indexOf(\"/\")) #")
+        	    },
         	    position: "bottom",
                 font:"10xp Tahoma"
         	  },
@@ -314,4 +312,4 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
     	   });
        };
 /* END: Call Ajax for create newStudentByMajor(Chart-03) */
-/* #################### START: Create code for generate newStudentByMajor Chart. #################### */  
+/* #################### START: Create code for generate newStudentByMajor Chart (chart-03). #################### */  

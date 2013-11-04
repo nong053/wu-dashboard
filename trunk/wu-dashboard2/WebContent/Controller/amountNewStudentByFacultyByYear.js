@@ -2,9 +2,7 @@ var PrvYear = $("#paramPrev").val();
 var paramYear = $("#paramYear").val();
 /* ######################### Start generate code for newStudentComparebyMajoyByYear chart. ############################ */
 
-	
-
-//Generate Chart01 By Kendo Start	
+//Start: Generate newStudentComparebyMajoyByYear(Chart-01) By Kendo 	
 function newStudentComparebyMajoyByYear(objSeriesData,objCategoryData) {
 	$("#newStudentComparebyMajoyByYear").kendoChart({
 		chartArea: {
@@ -40,7 +38,6 @@ function newStudentComparebyMajoyByYear(objSeriesData,objCategoryData) {
         		format: "{0}",
         		template: "#= series.name #: #= value # คน"
         	},
-//        	,
 //        	legendItemClick: onLegendItemClick,
 //        	axisLabelClick: onLegendItemClick
         	legendItemClick: onLegendItemClick
@@ -61,13 +58,10 @@ function onLegendItemClick(e) {
 		$("#idFaculty-"+e.series.id+"").addClass("show");
 		$("#idFaculty-"+e.series.id+"").parent().parent().show("1000");
 		
-
 	}else{
 		$("#idFaculty-"+e.series.id+"").removeClass("show");
 		$("#idFaculty-"+e.series.id+"").addClass("hide");
-		$("#idFaculty-"+e.series.id+"").parent().parent().hide("1000");
-		
-		
+		$("#idFaculty-"+e.series.id+"").parent().parent().hide("1000");	
 	}
 
 	setTimeout(function(){
@@ -92,7 +86,7 @@ function onLegendItemClick(e) {
 		}
 
 	},500);
-
+	
 }
 
               
