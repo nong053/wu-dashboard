@@ -1,5 +1,6 @@
 var PrvYear = $("#embParamPrev").val();
 var paramYear = $(".yearSelected").val();
+$("label#titleYearSe").text(paramYear);
 /* ######################### Start generate code for newStudentComparebyMajoyByYear chart. ############################ */
 
 //Start: Generate newStudentComparebyMajoyByYear(Chart-01) By Kendo 	
@@ -351,7 +352,6 @@ var setDataGrid = function(gridName,objDataColumn){
 			});
 			$(gridName+" tbody tr:nth-child("+(ntr+1)+") td:last").text(addCommas(parseInt(totleRecord)));
 			sumTotleRecord += totleRecord;
-			alert("+"+totleRecord+"=="+sumTotleRecord);
 			ntr++;
 		}
 		$(gridName+" tbody tr:last td:last").text(addCommas(parseInt(sumTotleRecord)));

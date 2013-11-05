@@ -133,8 +133,8 @@ $(document).ready(function(){
 				$(".style").remove();
 				$("#tabs-4").html(data);
 				
-				changeMapColor($("#paramYear").val());
-				dataGridProvinceFn($("#paramYear").val(),0);
+				changeMapColor($(".yearSelected").val());
+				dataGridProvinceFn($(".yearSelected").val(),0);
 				$("#provinceNameHi").remove();
 				$("#provinceNameTitle").html("<b>ทุกจังหวัด</b>");
 //				createThailandMap();	
@@ -218,6 +218,11 @@ $(document).ready(function(){
 	
 	/* START: function call model for newStudentByYearChart */	
 		$("form#formAction").submit(function(){
+			$("[href='#tabs-2']").hide();
+			$("[href='#tabs-3']").hide();
+			$("[href='#tabs-4']").hide();
+			$("[href='#tabs-5']").hide();
+			
 			$(".empParam").remove();
 			$("body").append("<input type=\"hidden\" id=\"embParamPrev\" name=\"embParamPrev\" class=\"empParam\" value="+$("#paramPrev").val()+">");
 			$("body").append("<input type=\"hidden\" id=\"embParamYear\" name=\"embParamYear\" class=\"empParam\" value="+$("#paramYear").val()+">");

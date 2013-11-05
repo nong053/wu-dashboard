@@ -1,3 +1,4 @@
+$("label#titleYearSe").text($(".yearSelected").val());
 /* ########################## Start generate code for amountNewStudentByRegion Map. ########################## */
 /* START: Generate Thailand map by jVectorMap */
 var createThailandMap = function(objColorData){
@@ -25,7 +26,7 @@ var createThailandMap = function(objColorData){
 			$("body").append("<input type=\"hidden\" id=\"provinceNameHi\" value=\""+map.getRegionName(code)+"\">");
 			
 			var provinceid = code.substring(3);
-			dataGridProvinceFn($("#embParamYear").val(), provinceid);
+			dataGridProvinceFn($(".yearSelected").val(), provinceid);
 	    }
 	});
 };
@@ -138,8 +139,8 @@ var createHtmlGridFn = function(provinceName){
 	       			"<thead>" +
 	       			       				
 	       				"<tr>" +
-	       					"<th data-field=\"Field1\" rowspan=\"2\"> <center><b> ลำดับ </b></center> </th>" +
-	       					"<th data-field=\"Field2\" rowspan=\"2\"> <center><b> โรงเรียน </b></center> </th>" +
+//	       					"<th data-field=\"Field1\" rowspan=\"2\"> <center><b> ลำดับ </b></center> </th>" +
+//	       					"<th data-field=\"Field2\" rowspan=\"2\"> <center><b> โรงเรียน </b></center> </th>" +
 	       					
 	       					"<th data-field=\"Field3\"> <center><b> โควตา </b></center> </th>" +
 							"<th data-field=\"Field4\"> <center><b> รับตรง </b></center> </th>" +
@@ -148,13 +149,15 @@ var createHtmlGridFn = function(provinceName){
 	       				"</tr>"+
 	       		
 	       				"<tr>" +
-       						"<th colspan=\"2\"> <label id=\"provinceNameTitle\">   </label> </th>" +
-       						"<th colspan=\"4\" style=\"text-align:right;\"> <label id=\"totlaTitle\">  </lable> </th>" +
+       						"<th class=\"k-header\" colspan=\"2\"> <label id=\"provinceNameTitle\">   </label> </th>" +
+       						"<th class=\"k-header\" colspan=\"4\" style=\"text-align:right;\"> <label id=\"totlaTitle\">  </lable> </th>" +
        					"</tr>" +
        					
        					"<tr>" +
-   							"<th colspan=\"2\"> </th>" +
-   							"<th colspan=\"4\" style=\"text-align:right;\"> <center>จำนวนนักศึกษาตามประเภทการรับเข้า(คน)</center></th>" +
+	       					"<th class=\"k-header\" data-field=\"Field1\" rowspan=\"2\"> <center><b> ลำดับ </b></center> </th>" +
+	       					"<th class=\"k-header\" data-field=\"Field2\" rowspan=\"2\"> <center><b> โรงเรียน </b></center> </th>" +
+//   							"<th class=\"k-header\" colspan=\"2\"> </th>" +
+   							"<th class=\"k-header\" colspan=\"4\" style=\"text-align:right;\"> <center>จำนวนนักศึกษาตามประเภทการรับเข้า(คน)</center></th>" +
    						"</tr>" +
 	       				/*
 	       				"<tr>"+
@@ -249,8 +252,13 @@ var setDataGrid = function(gridName,objDataGrid1,RecordTotal){
 	      scrollable:true
 		});
 	
-	
-	
+	/* Set style of data grid (thead). */
+	$(".k-grid-header-wrap table thead tr").each(function(){
+		$("tr:nth-child(1) th").css({"border-color":"#C5C5C5", "border-width":"0 0 1px 0"});
+		$("tr:nth-child(2) th:nth-child(3)").css({"border-color":"#C5C5C5", "border-width":"0 0 1px 1px"});
+		$("tr:nth-child(3) th:nth-child(1)").css({"border-color":"#C5C5C5", "border-width":"0 0 0 1px"});
+//		$("tr:nth-child(1) th").text("VVVVVVVVVVVV");
+	});
 	
 	/* set Font for Number pending */
 	$(gridName+" tbody tr").each(function(){
@@ -275,7 +283,8 @@ var setDataGrid = function(gridName,objDataGrid1,RecordTotal){
 		$("#provinceNameTitle").css({"font-weight":"bold","font-size":"14px"});
 	},1000);
 	
-	$("#gridAmountByRegion .k-grid-content").css({"height":"520px"});
+	$("#gridAmountByRegion .k-grid-content").css({"height":"500px"});
+	$(".k-grid k-widget k-secondary").css({"height":"590px"});
 };
 /* END: Set Kendo Grid*/
 /* ########################## Start generate code for amountNewStudentByRegion grid. ########################## */

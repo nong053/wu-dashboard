@@ -10,15 +10,9 @@
 <div id="content">
 	<div id="contantBody">
 		<div class="contentTitleChart">
-			<br/> 
-			<label id="titleLabel" style="font:Tahoma bold 14px;"></label>
-			<script>
-				var htmlTitle = "";
-					htmlTitle += "จำนวนนักศึกษาใหม่ระดับปริญญาตรีตามพิ้นที่ ปีการศึกษา"+$("#embParamYear").val()+"<br/>"+
-								"นักศึกษาเข้าใหม่ทั้งหมด <label id=\"amtNewStuTitle\"></label> คน <br/>" +
-								"(คลิกไปยังจังหวัดที่ต้องการรายละเอียด) <br/>" ;
-					$("#titleLabel").html(htmlTitle);
-			</script>
+			<b> จำนวนนักศึกษาใหม่ระดับปริญญาตรีตามพิ้นที่ ปีการศึกษา <label id="titleYearSe"> </label><br/>
+			นักศึกษาเข้าใหม่ทั้งหมด <label id="amtNewStuTitle"> </label> คน <br/>
+			(คลิกไปยังจังหวัดที่ต้องการรายละเอียด) </b>	
 		</div> 
 		<br/>
 		<div class="contentPanelL">
@@ -68,7 +62,7 @@
 		<div class="contentPanelR">
 			<!-- Description of table -->		
 			<!-- Start: Table Amount New Student by Region -->
-			<div id="gridAmountByRegion" style="width:100%; height:550px; margin:auto;"> 
+			<div id="gridAmountByRegion" style="width:100%; height:590px; margin:auto;"> 
 				<div id="dataGrid"> </div>
 			</div>
 		</div>

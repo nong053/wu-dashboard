@@ -343,7 +343,7 @@ function newStudentByYearByFacultyByMajorChart(objSeriesColumnData, objSeriesLin
         },
         tooltip: {
             visible: true,
-            template: "#= series.name #: #= value #"
+            template: "#= category #, #= value #"
         }
     });
 }
