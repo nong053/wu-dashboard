@@ -1,5 +1,5 @@
-var PrvYear = $("#paramPrev").val();
-var paramYear = $("#paramYear").val();
+var PrvYear = $("#embParamPrev").val();
+var paramYear = $(".yearSelected").val();
 /* ######################### Start generate code for newStudentComparebyMajoyByYear chart. ############################ */
 
 //Start: Generate newStudentComparebyMajoyByYear(Chart-01) By Kendo 	
@@ -14,7 +14,7 @@ function newStudentComparebyMajoyByYear(objSeriesData,objCategoryData) {
         series: objSeriesData
         ,
         legend: {
-        	position: "right",
+        	position: "bottom",
         	visible: true
         },
         valueAxis: {
@@ -36,7 +36,7 @@ function newStudentComparebyMajoyByYear(objSeriesData,objCategoryData) {
         	tooltip: {
         		visible: true,
         		format: "{0}",
-        		template: "#= series.name #: #= value # คน"
+        		template: "ปี #=category#, #= series.name # #= value # คน"
         	},
 //        	legendItemClick: onLegendItemClick,
 //        	axisLabelClick: onLegendItemClick
@@ -51,7 +51,6 @@ function newStudentComparebyMajoyByYear(objSeriesData,objCategoryData) {
 
 //click legende
 function onLegendItemClick(e) {
-
 	$("table#dataGridDetail tbody tr").css({"background":"white"});
 	if($("#idFaculty-"+e.series.id+"").hasClass("hide")){
 		$("#idFaculty-"+e.series.id+"").removeClass("hide");
@@ -73,7 +72,7 @@ function onLegendItemClick(e) {
 		
 		$("table#dataGridDetail tbody tr:last td").text("");
 		$("table#dataGridDetail tbody tr:last td:eq(0)").text("รวมทั้งหมด");	
-		for(var i=1;i<=(PrvYear+1);i++){
+		for(var i=1;i<=(PrvYear)+1;i++){
 			var sumValue=0;	
 			$("table#dataGridDetail tbody tr:visible").each(function(){	
 					//alert($("td:eq("+i+")",this).text());
@@ -84,26 +83,20 @@ function onLegendItemClick(e) {
 			});	
 			$("table#dataGridDetail tbody tr:last td:eq("+i+")").text(""+addCommas(sumValue)+"");
 		}
-
-	},500);
-	
+	},500);	
 }
-
-              
+             
 /* START: Call Ajax for create chart newStudentComparebyMajoyByYear */
 var chartComparingAtmNewStudentByFacultyFn = function(){
 	$.ajax({
 		url: "../Model/chartComparingAtmNewStudentByFaculty.jsp",
 		type: "get",
 		dataType: "json",
-		data: {"paramYear":$("#paramYear").val()},
+		data: {"paramYear":paramYear},
 		success:function(data){
-			
-			
-			
+		
 			var seriesData = "";
 			var categoryData = "";
-			
 			
 			seriesData += "[";
 			categoryData += "[";
@@ -182,7 +175,6 @@ var chartComparingAtmNewStudentByFacultyFn = function(){
         	categoryData += "]";
 
         	var objSeriesData = eval("("+seriesData+")");
-        	//console.log(objSeriesData);
         	var objCategoryData = eval("("+categoryData+")");
 //        	console.log(objCategoryData);   
 //        	newStudentComparebyMajoyByYear(objSeriesData,objCategoryData);
@@ -192,44 +184,41 @@ var chartComparingAtmNewStudentByFacultyFn = function(){
 	});
 };
 
-//	$("#newStudentComparebyMajoyByYear").click(function(){
-//		alert("clicked");
-//	}); 
-
 /* END: Call Ajax for create chart newStudentComparebyMajoyByYear */
 /* ######################### End generate code for newStudentComparebyMajoyByYear chart. ############################ */
+
 
 
 /* ########################### Start generate gridCompareAtmNewStudentByFaculty chart. ############################## */
 /* START: Create Table Html fro dataGridCompareByMajor */
 var createHtmlGridFn = function(){
-	var yearField = $("#embParamYear").val(); 
-	var PrvYear = $("#embParamPrev").val(); 
+	var yearField = paramYear; 
+	var PrvField = PrvYear; 
 	var f = 2; 
 	var th = 0; 
 	var tb = 0;
 	var htmlGrid = ""+
-				"<table id=\"dataGridDetail\" width=\"100%\" border=\"1\">" +
+				"<table id=\"dataGridDetail\" style=\"width:980px; margin:10px auto auto; border:1px solid #CCCCCC\">" +
 					"<thead>" +
-						
         				"<tr>";
 							
-	        				while (th < PrvYear) {
+	        				while (th < PrvField) {
 	        					htmlGrid += "<th data-field=\"Field"+(f++)+"\"> <center> <b>"+(yearField--)+"</b></center> </th>";
 	        					th++;
 	        				}
+	        				
 	        			htmlGrid +=	"" +
 	        			"<tr>" +
-							"<th data-field=\"Field1\" rowspan=\"2\"> <center> <b> สำนักวิชา </b></center> </th>" +
-							"<th data-field=\"FieldTitle\" colspan="+PrvYear+"> <center> <b>จำนวนนักศึกษาตามปีการศึกษาที่เข้าศึกษา (คน) </b></center> </th>"+
-							"<th data-field=\"FieldTotle\" rowspan=\"2\"> <center> <b>รวมทั้งหมด  <br>(คน) </b></center> </th>"+
+							"<th class=\"k-header\" data-field=\"Field1\" rowspan=\"2\"> <center> <b> สำนักวิชา </b></center> </th>" +
+							"<th class=\"k-header\" data-field=\"FieldTitle\" colspan="+PrvField+"> <center> <b>จำนวนนักศึกษาตามปีการศึกษาที่เข้าศึกษา (คน) </b></center> </th>"+
+							"<th class=\"k-header\" data-field=\"FieldTotle\" rowspan=\"2\"> <center> <b>รวมทั้งหมด  <br>(คน) </b></center> </th>"+
 						"</tr>" +
         				"</tr>" +								
 					"</thead>" +
 					"<tboby>" +
 						"<tr>" +
 							"<td> </td>";
-	        				while (tb < PrvYear) {
+	        				while (tb < PrvField) {
 	        					htmlGrid += "<td> </td>";
 	        					tb++;
 	        				}
@@ -250,13 +239,12 @@ var dataGrideCompareByMajorFn = function(){
 		url: "../Model/gridComparingAtmNewStudentByFaculty.jsp",
 		type: "get",
 		dataType: "json",
-		data: {"paramYear":$("#paramYear").val()},
+		data: {"paramYear":paramYear},
 		success:function(data){
-			//alert(data);
-			
+//			alert(data);
 			var dataColumn = "";
 			dataColumn +="[";
-			$.each(data,function(index,indexEntry){				
+			$.each(data,function(index,indexEntry){
 				if(index == 0){
 					dataColumn+="{"+
 									"FieldId:\""+indexEntry[0]+"\","+
@@ -271,7 +259,7 @@ var dataGrideCompareByMajorFn = function(){
 									"Field9:\""+addCommas(parseInt(indexEntry[9]))+"\","+
 									"Field10:\""+addCommas(parseInt(indexEntry[10]))+"\","+
 									"Field11:\""+addCommas(parseInt(indexEntry[11]))+"\","+
-									"FieldTotle:\""+addCommas(parseInt(indexEntry[12]))+"\","+
+//									"FieldTotle:\""+addCommas(parseInt(indexEntry[12]))+"\","+
 								"}";
 				}else{
 					dataColumn+=",{"+
@@ -287,7 +275,7 @@ var dataGrideCompareByMajorFn = function(){
 									"Field9:\""+addCommas(parseInt(indexEntry[9]))+"\","+
 									"Field10:\""+addCommas(parseInt(indexEntry[10]))+"\","+
 									"Field11:\""+addCommas(parseInt(indexEntry[11]))+"\","+
-									"FieldTotle:\""+addCommas(parseInt(indexEntry[12]))+"\","+
+//									"FieldTotle:\""+addCommas(parseInt(indexEntry[12]))+"\","+
 								"}";
 				}
 				
@@ -306,7 +294,7 @@ var dataGrideCompareByMajorFn = function(){
 /* START: Create function setdatagrid for set Kendo grid.  */
 var setDataGrid = function(gridName,objDataColumn){
 	/* Generate Multi Field. */
-	var PrvYear = $("#paramPrev").val();
+	var PrvYear = $("#embParamPrev").val();
 	var fieldRow = 0; 
 	var field = 2;
 	var title="";
@@ -323,13 +311,12 @@ var setDataGrid = function(gridName,objDataColumn){
 	$(gridName).kendoGrid({
 		columns: objTitle,
 		dataSource: objDataColumn,
-		//height: 420,
 		scrollable:false
 	});
 	
-	/* Set font, style, Number pending of data grid (thead). */
+	/* Set style of data grid (thead). */
 	$(gridName+" thead tr").each(function(){
-		$("tr:first th:last").css({"background-color":"#527ACC", "color":"white"});
+		$("tr:nth-child(2) th:first").css({"border-color":"#C5C5C5", "border-width":"0 0 1px 1px"});
 	});
 	
 	/* Set font, style, Number pending of data grid (tbody). */
@@ -341,11 +328,33 @@ var setDataGrid = function(gridName,objDataColumn){
 			tdNo++;
 		}
 		
-		/* Set field total and record totle. */	
-		$("td",this).eq(tdNo+1).css({"border":"1px solid white", "text-align":"right", "background-color":"#527ACC", "color":"white"});	
+		/* Set style field total and record totle. */	
+		$("td",this).eq(tdNo+1).css({"border-color":"#C5C5C5", "border-width":"0 0 1px 1px", "text-align":"right", "background-color":"#527ACC", "color":"white"});	
 		$("tr:last").css({"background-color":"#6699FF", "color":"white"});
 		$("tr:last td:first").css({"text-align":"center"});		
 		$("tr:last td:last").css({"border-top":"0px","border-bottom":"0px","background-color":"#6699FF"});	
+	});
+	
+	/* Set totle value for data grid */
+	var countRecord = ($(gridName+" tbody tr").length)-1;
+	$(gridName+" tbody").each(function(){
+		var sumTotleRecord = 0;
+		var ntr = 0;
+		while(ntr < countRecord){
+			var totleRecord = 0;
+			$("tr",this).eq(ntr).each(function(){
+				var ntd = 1;
+				while(ntd <= PrvYear){
+					totleRecord += (parseInt($("td",this).eq(ntd).text()));
+					ntd++;
+				}
+			});
+			$(gridName+" tbody tr:nth-child("+(ntr+1)+") td:last").text(addCommas(parseInt(totleRecord)));
+			sumTotleRecord += totleRecord;
+			alert("+"+totleRecord+"=="+sumTotleRecord);
+			ntr++;
+		}
+		$(gridName+" tbody tr:last td:last").text(addCommas(parseInt(sumTotleRecord)));
 	});
 };
 /* END: Create function setdatagrid for set Kendo grid.  */

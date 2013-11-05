@@ -3,7 +3,6 @@
     pageEncoding="UTF-8"%>
 <%
 	String paramYear = request.getParameter("paramYear");
-	paramYear="2555";
 	wuService jndi = new wuService();	
 	String query = "call gridComparingAtmNewStudentsByFaculty("+paramYear+")"; //call storeprocedure
 	//String query = "call gridComparingAtmNewStudentsByFaculty(2556)";
