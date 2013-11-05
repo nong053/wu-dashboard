@@ -317,7 +317,7 @@ var setDataGrid = function(gridName,objDataColumn){
 	
 	/* Set style of data grid (thead). */
 	$(gridName+" thead tr").each(function(){
-		$("tr:nth-child(2) th:first").css({"border-color":"#C5C5C5", "border-width":"0 0 1px 1px"});
+		$("tr:nth-child(2) th:nth-child(1)").css({"border-color":"#C5C5C5", "border-width":"0 0 1px 1px"});
 	});
 	
 	/* Set font, style, Number pending of data grid (tbody). */
