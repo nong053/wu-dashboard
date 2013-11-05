@@ -13,36 +13,37 @@
 	/*box-shadow: 0 0 10px #888888;*/
 }
 #content .contentPanelL{
-	width:444px;
-	height:600px;
-	float:left;
-	position:relative;
-	/*border: 1px solid yellow;*/
+	border: 1px solid #C5C5C5;
+    float: left;
+    height: 580px;
+    margin-left: 5px;
+    padding: 5px;
+    position: relative;
+    width: 420px;
 }
 .k-grid-content{
-	height:520px;
+	height:500px;
 }
 #content .contentPanelR{
-	width: 545px;
-	height:575px;
-	float:left;
-	/*border-right:1px solid gray;*/
+	border: 1px solid #C5C5C5;
+    float: left;
+    height: 590px;
+    margin-left: 5px;
+    width: 545px;
 }
 #content .contentTitleChart{
-	width:948px;
-	height:80px;
-	margin:auto;
-	text-align:center;
-	/*border: 1px solid yellow;*/
+	height: 60px;
+    margin: 10px auto auto;
+    text-align: center;
+    width: auto;
 }
 #thaiMap{
-	width:450px; 
-	height:550px; 
-	margin:auto; 
-	padding-top:10px;
-	padding-left:11px;
-	position: absolute;
-	z-index: 1;
+	height: 575px;
+    /*padding-left: 10px;
+    padding-top: 10px;*/
+    position: absolute;
+    width: 420px;
+    z-index: 1;
 }
 #content .contentPanelL .legend{
 	width:150px;
