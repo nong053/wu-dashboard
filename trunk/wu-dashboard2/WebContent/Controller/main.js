@@ -216,8 +216,7 @@ $(document).ready(function(){
 	$("#paramPrev").kendoDropDownList();
 	/* START: Create parameter "previousYear" */
 	
-	/* START: function call model for newStudentByYearChart */
-	
+	/* START: function call model for newStudentByYearChart */	
 		$("form#formAction").submit(function(){
 			$(".empParam").remove();
 			$("body").append("<input type=\"hidden\" id=\"embParamPrev\" name=\"embParamPrev\" class=\"empParam\" value="+$("#paramPrev").val()+">");

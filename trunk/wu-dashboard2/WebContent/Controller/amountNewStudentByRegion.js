@@ -136,9 +136,7 @@ var createHtmlGridFn = function(provinceName){
 	gridRatio = ""+
 				"<table id=\"dataGridDetailRegion\" width=\"100%\" border=\"1\">" +
 	       			"<thead>" +
-	       			
-	       				
-	       				
+	       			       				
 	       				"<tr>" +
 	       					"<th data-field=\"Field1\" rowspan=\"2\"> <center><b> ลำดับ </b></center> </th>" +
 	       					"<th data-field=\"Field2\" rowspan=\"2\"> <center><b> โรงเรียน </b></center> </th>" +

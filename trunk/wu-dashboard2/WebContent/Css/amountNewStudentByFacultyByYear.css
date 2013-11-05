@@ -1,20 +1,23 @@
+th{
+	/*border: 1px solid #CCCCCC;*/
+}
 #content{
-	width:950px;
-	height:920px;
-	margin:auto;
-	/*border: 1px solid blue;*/
-	
+	width:980px;
+	height:auto;
+	margin:10px auto auto;
+	border: 1px solid #CCCCCC;
 }
 #content .contentPanel{
-	width:948px;
-	height:420px;
+	width:980px;
+	height:auto;
 	float:left;
 	/*border: 1px solid orange;*/
 }
 #content .contentTitleChart{
-	width:948px;
+	width:auto;
 	height:20px;
 	margin:auto;
 	text-align:center;
+	padding: 5px;
 	/*border: 1px solid red;*/
 }
