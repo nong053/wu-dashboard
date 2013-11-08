@@ -6,7 +6,7 @@
 	
 	wuService jndi = new wuService();	
 	String query = "call percentNewstudentByFacultyComparedByPlan("+paramYear+")"; //call storeprocedure
-	//String query = "call percentAmountNewstudentCompaerFaculty(2555)";
+	//String query = "call percentNewstudentByFacultyComparedByPlan(\"2554\")";
 	String field = "1,2,3,4,5"; //select field
 		jndi.selectByIndex(query, field);
 		out.print(jndi.getData());	
