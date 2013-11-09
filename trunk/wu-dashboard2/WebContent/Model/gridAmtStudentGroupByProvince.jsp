@@ -6,8 +6,8 @@
 	String provinceId = request.getParameter("provinceId");
 	
 	wuService jndi = new wuService();	
-	String query = "call gridAmtStudentGroupByProvince(\""+paramYear+"\",\""+provinceId+"\")"; //call storeprocedure
-	//String query = "call amtStudentGroupByProvince(2555,0)";
+	String query = "call gridAmtStudentGroupByProvince("+paramYear+","+provinceId+")"; //call storeprocedure
+	//String query = "call gridAmtStudentGroupByProvince(2555,10)";
 	String field = "1,2,3,4,5"; //select field
 		jndi.selectByIndex(query, field);
 		out.print(jndi.getData());	
