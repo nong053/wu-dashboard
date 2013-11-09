@@ -10,7 +10,8 @@
 		}
 		return x1 + x2;
 	};
-/* START : Create function add commas() to use value in grid table */
+
+	
 $(document).ready(function(){
 	
 	/* Generate jquery Button style. */
@@ -18,10 +19,7 @@ $(document).ready(function(){
 		
 	/* Contorl Tabs by jQuery */
 	$( "#tabs" ).tabs();
-	$("[href='#tabs-2']").hide();
-	$("[href='#tabs-3']").hide();
-	$("[href='#tabs-4']").hide();
-	$("[href='#tabs-5']").hide();
+
 	
 /* ############################# START: Event Click Tabs-1  ############################# */
 	$("[href='#tabs-1']").click(function(){
@@ -32,7 +30,7 @@ $(document).ready(function(){
 			success:function(data){  //alert(data) for test HTML Data;
 				$(".style").remove();
 				$("#tabs-1").html(data);
-					
+				
 				/* START: Create newStudentByYearChart*/
 				$.ajax({
             		url:"../Model/amount_newstudent_year.jsp",
@@ -40,9 +38,7 @@ $(document).ready(function(){
             		dataType:"json",
             		data:{"paramYear":$("#embParamYear").val(),"paramPrev":$("#embParamPrev").val()},
             		success:function(data){
-            			//console.log(data);
-            			//alert(data);
-            			/*all function generate graph column type*/
+            		if(data != ""){
             			/*START: Crate newStudentByYearChart */
               			var seriesColumnData="";
             			var seriesLineData="";
@@ -74,9 +70,18 @@ $(document).ready(function(){
             			var objCateData = eval("("+cateData+")");
 
             			newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData);
-            			}
-            		});
-					/* END: Create newStudentByYearChart*/												
+            			
+            		}else{
+            			$("#newStudentByYearChart").html("<font id=\"NDF01\" color=\"red\" size=\"4\"><center> NO DATA FOUND! <center></font>");
+            		}
+               			
+            		}
+            	});
+					/* END: Create newStudentByYearChart*/	
+				$("#panelL-Page1").show();
+				$("label.asOfYear").text($("#embParamYear").val());
+				topTenHighSchoolByYearFn($("#embParamYear").val(),$("#selectTop").val());
+				
 				}
 		});
 	});
@@ -133,14 +138,17 @@ $(document).ready(function(){
 				$(".style").remove();
 				$("#tabs-4").html(data);
 				
-				changeMapColor($(".yearSelected").val());
-				dataGridProvinceFn($(".yearSelected").val(),0);
+				changeMapColor(parseInt($("#embParamYear").val()));
+				dataGridProvinceFn(parseInt($("#embParamYear").val()),0);
+				
 				$("#provinceNameHi").remove();
 				$("#provinceNameTitle").html("<b>ทุกจังหวัด</b>");
-//				createThailandMap();	
-//				createHtmlGridFn();
 				
-				
+				$(".k-grid-header-wrap table thead tr").each(function(){
+					$("tr:nth-child(2) th:nth-child(2)").text("จังหวัด");
+					$("tr:nth-child(2) th:nth-child(2)").css({"text-align":"center", "font-weight":"bold"});
+				});
+
 			}
 		});
 	});
@@ -217,15 +225,10 @@ $(document).ready(function(){
 	/* START: Create parameter "previousYear" */
 	
 	/* START: function call model for newStudentByYearChart */	
-		$("form#formAction").submit(function(){
-			$("[href='#tabs-2']").hide();
-			$("[href='#tabs-3']").hide();
-			$("[href='#tabs-4']").hide();
-			$("[href='#tabs-5']").hide();
-			
+		$("form#formAction").submit(function(){			
 			$(".empParam").remove();
-			$("body").append("<input type=\"hidden\" id=\"embParamPrev\" name=\"embParamPrev\" class=\"empParam\" value="+$("#paramPrev").val()+">");
-			$("body").append("<input type=\"hidden\" id=\"embParamYear\" name=\"embParamYear\" class=\"empParam\" value="+$("#paramYear").val()+">");
+			$("body").append("<input type=\"text\" id=\"embParamPrev\" name=\"embParamPrev\" class=\"empParam\" value="+$("#paramPrev").val()+">");
+			$("body").append("<input type=\"text\" id=\"embParamYear\" name=\"embParamYear\" class=\"empParam\" value="+$("#paramYear").val()+">");
 			$("[href='#tabs-1']").trigger("click");
 			return false;
 		}); //.trigger("submit");

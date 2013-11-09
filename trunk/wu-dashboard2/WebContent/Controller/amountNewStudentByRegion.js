@@ -1,7 +1,11 @@
-$("label#titleYearSe").text($(".yearSelected").val());
+/* parameter control */
+var PrvYear = $("#embParamPrev").val();
+var paramYear = $("#embParamYear").val();
+$("label#titleYearSe").text(paramYear);
+
 /* ########################## Start generate code for amountNewStudentByRegion Map. ########################## */
 /* START: Generate Thailand map by jVectorMap */
-var createThailandMap = function(objColorData){
+var createThailandMap = function(objColorData, fnParamYear){
 	$("#thaiMap").vectorMap({
 		map: "th_mill_en",
 		backgroundColor: "transparent",
@@ -26,19 +30,20 @@ var createThailandMap = function(objColorData){
 			$("body").append("<input type=\"hidden\" id=\"provinceNameHi\" value=\""+map.getRegionName(code)+"\">");
 			
 			var provinceid = code.substring(3);
-			dataGridProvinceFn($(".yearSelected").val(), provinceid);
+			dataGridProvinceFn(fnParamYear, provinceid);
+			
 	    }
 	});
 };
 /* END: Generate Thailand map by jVectorMap */
 
 /* START: Call ajax change color Thailand map. */
-var changeMapColor = function(paramYear){
+var changeMapColor = function(fnParamYear){
 	$.ajax({
 		url: "../Model/mapAmtStudentGroupByProvince.jsp",
 		type: "get",
 		dataType: "json", 
-		data:{"paramYear":"\""+paramYear+"\""},
+		data:{"paramYear":fnParamYear},
 		success:function(data){
 			if(data != ""){
 				var numAllStudent = "";
@@ -88,7 +93,7 @@ var changeMapColor = function(paramYear){
 					$("label#amtNewStuTitle").text(addCommas($("#countNewStudent").val()));
 					
 					/*Generate Map*/
-					createThailandMap(objColorData);
+					createThailandMap(objColorData, fnParamYear);
 			}else{
 				alert("Data Not Found");
 			}
@@ -144,7 +149,7 @@ var createHtmlGridFn = function(provinceName){
 	       					
 	       					"<th data-field=\"Field3\"> <center><b> โควตา </b></center> </th>" +
 							"<th data-field=\"Field4\"> <center><b> รับตรง </b></center> </th>" +
-							"<th data-field=\"Field5\"> <center><b> Admis </b></center> </th>" +
+							"<th data-field=\"Field5\" style=\"font-size:9.5px\"> <center><b> Admission </b></center> </th>" +
 							"<th data-field=\"Field6\"> <center><b> รวม </b></center> </th>" +
 	       				"</tr>"+
 	       		
@@ -185,13 +190,13 @@ var createHtmlGridFn = function(provinceName){
 /* END: Create gridAmountByRegion */
 
 /* START: Call Ajax generate data for GridAmountByReguon */
-var dataGridProvinceFn = function(paramYear, provineId){
+var dataGridProvinceFn = function(fnParamYear, provineId){
 	$.ajax({
 		url: "../Model/gridAmtStudentGroupByProvince.jsp",
 		type: "get",
 		dataType: "json",
 		async:false,
-		data:{"paramYear":paramYear,"provinceId":provineId},
+		data:{"paramYear":fnParamYear,"provinceId":provineId},
 		success:function(data){
 		if(data != ""){
 //			console.log(data);
@@ -257,7 +262,6 @@ var setDataGrid = function(gridName,objDataGrid1,RecordTotal){
 		$("tr:nth-child(1) th").css({"border-color":"#C5C5C5", "border-width":"0 0 1px 0"});
 		$("tr:nth-child(2) th:nth-child(3)").css({"border-color":"#C5C5C5", "border-width":"0 0 1px 1px"});
 		$("tr:nth-child(3) th:nth-child(1)").css({"border-color":"#C5C5C5", "border-width":"0 0 0 1px"});
-//		$("tr:nth-child(1) th").text("VVVVVVVVVVVV");
 	});
 	
 	/* set Font for Number pending */
@@ -281,7 +285,7 @@ var setDataGrid = function(gridName,objDataGrid1,RecordTotal){
 		$("#totlaTitle").text(addCommas(parseInt(RecordTotal[6]))+" คน  คิดเป็น "+per.toFixed(2)+"%");
 		$("#provinceNameTitle").text($("#provinceNameHi").val());
 		$("#provinceNameTitle").css({"font-weight":"bold","font-size":"14px"});
-	},1000);
+	},500);
 	
 	$("#gridAmountByRegion .k-grid-content").css({"height":"500px"});
 	$(".k-grid k-widget k-secondary").css({"height":"590px"});

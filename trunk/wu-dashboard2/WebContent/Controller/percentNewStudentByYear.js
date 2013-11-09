@@ -1,7 +1,11 @@
+/* parameter control */
+var PrvYear = $("#embParamPrev").val();
+var paramYear = $("#embParamYear").val();
+
 /*Control object in page */
 $(".bottomTitleChart").hide();
 $("#bottomContent").hide();
-$(".asOfYear").text($(".yearSelected").val());
+$(".asOfYear").text(paramYear);
 $(".legend-2").hide();
 
 /*Create Tooltip by JQuery By assign the title on Object*/
@@ -68,15 +72,17 @@ var percentCompareByFacultyFn = function(){
 		url: "../Model/percentNewStudentByFucultyComparedByPlan.jsp",
 		type: "get",
 		dataType: "json",
-		data:{"paramYear":$(".yearSelected").val()},
+		data:{"paramYear":paramYear},
 		success:function(data){
-//			alert(data);				
+		if(data != ""){
 			$("#contentGauges").empty();
 			$("#contentGaugeTitle").empty();
 			$.each(data,function(index,indexEntry){
-//				alert(indexEntry[4]);
 				percentCompareByFacultyChart(indexEntry[0], indexEntry[1], indexEntry[4],indexEntry[2],indexEntry[3]);
 			});
+		}else{
+			$("#gauge"+indexEntry[0]).html("<font id=\"NDF01\" color=\"red\" size=\"4\"><center> NO DATA FOUND! <center></font>");
+		}			
 		}
 	});
 };
@@ -133,13 +139,18 @@ var percentCompareByMajorFn = function(fucultyId){
 		url: "../Model/percentNewStudentByMajorComparedByPlan.jsp",
 		type: "get",
 		dataType: "json",
-		data:{"paramYear":$(".yearSelected").val(), "majorId":fucultyId},
+		data:{"paramYear":paramYear, "majorId":fucultyId},
 		success:function(data){
+		if(data != ""){
 			$("#bottomContent #contentGauges").empty();
 			$.each(data,function(index,indexEntry){
 				percentCompareByMajorChart(indexEntry[0], indexEntry[1], indexEntry[2], indexEntry[3], indexEntry[4]);
 					
 			});
+		}else{
+			$("#gauge"+indexEntry[0]).html("<font id=\"NDF01\" color=\"red\" size=\"4\"><center> NO DATA FOUND! <center></font>");
+		}
+			
 		}
 	});
 };

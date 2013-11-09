@@ -1,5 +1,9 @@
+/* parameter control */
+var PrvYear = $("#embParamPrev").val();
+var paramYear = $("#embParamYear").val();
+
 /* Control object in page. */
-$(".asOfYear").text($(".yearSelected").val());
+$(".asOfYear").text(paramYear);
 $("div#buttomContent").hide();
 $(".panel").hide();
 $(".panelChartTitle").hide();
@@ -67,19 +71,19 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
 		},
 		
 		seriesClick:function(e){
+			
 			$("div#buttomContent").show();
 			$(".panel").show();
 			$(".panelChartTitle").show();
 			
-			
+			/* ChartTitle */
+			$("label.asOfYear").text(paramYear);
+			$("label.asOfType").text(e.series.name);
+			$("label.asOfMajor").text(e.category.substring(e.category.indexOf("-")+1));
 			
 			avgGpaByfacuByYearFn(e.series.name2, e.category.substring(0,2));
 			amountNewStudentByMajorFn(e.series.name2,e.category.substring(0,2));
-				
-			//ChartTitle
-			$(".asOfYear").text($(".yearSelected").val());
-			$(".asOfType").text(e.series.name.substring(2));
-			$(".asOfMajor").text(e.category.substring(3));
+						
 		}
 		
 	});
@@ -93,7 +97,7 @@ var amountNewStudentByTypeFn = function(){
 		url: "../Model/amountNewStudentByType.jsp",
 		type: "get",
 		dataType: "json",
-		data:{"paramYear":$(".yearSelected").val()},
+		data:{"paramYear":paramYear},
 		success:function(data){
 			if(data != ""){
 				var seriesFirst="";
@@ -133,7 +137,7 @@ var amountNewStudentByTypeFn = function(){
 	 			   
 	 			newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCategories, sumSeries);
 			}else{
-				alert("จำนวนนักศึกษาใหม่ตามประเภทการรับ \r\n NO Data Found!");
+				$("#newStudentByType").html("<font id=\"NDF01\" color=\"red\" size=\"4\"><center> NO DATA FOUND! <center></font>");
 			}
 		}
 	});
@@ -198,7 +202,7 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
 		 url: "../Model/avgGpaByfacuByYear.jsp",
 		 type: "get", 
 		 dataType: "json",
-		 data:{"paramYear":$(".yearSelected").val(), "facuId":facuId, "typeId":TypeId},
+		 data:{"paramYear":paramYear, "facuId":facuId, "typeId":TypeId},
 		 success:function(data){
 			 if(data != ""){
 	 				var seriesData="";
@@ -222,7 +226,7 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
 
 					averageGpaByYear(objseriesData, objcategoriesData);	
 			 }else{
-				 alert("GPA ระดับ ม.ปลายเฉลี่ยของนักศึกษาใหม่ \r\n No Data Found!");
+				 $("#averageGpaByYear").html("<font id=\"NDF01\" color=\"red\" size=\"4\"><center> NO DATA FOUND! <center></font>");
 			 }
 			 
 		 }    	 		
@@ -266,14 +270,14 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
            });
        }
 /* START: Generate newStudentByMajor(Chart-03) By Kendo */
-    
+
 /* START: Call Ajax for create newStudentByMajor(Chart-03) */
        var amountNewStudentByMajorFn = function(typeId, facuId){
     	   $.ajax({
     		   url: "../Model/amountNewStudentByMajorByTypeByYear.jsp",
     		   type: "post",
     		   dataType: "json",
-    		   data:{"paramYear":$(".yearSelected").val(), "facuId":facuId, "typeId":typeId},
+    		   data:{"paramYear":paramYear, "facuId":facuId, "typeId":typeId},
     		   success:function(data){
     			   if(data != ""){
     				   /* total new student by year, faculty and type. (select from newStudentByType) */
@@ -307,7 +311,7 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
         			   var objDataCloumn = eval("("+dataCloumn+")");       			   
         			   newStudentByMajor(objDataCloumn);
     			   }else{
-    				   alert("จำนวนนักศึกษาใหม่ตามหลักสูตร \r\n No Data Found!");
+    				   $("#newStudentByMajor").html("<font id=\"NDF01\" color=\"red\" size=\"4\"><center> NO DATA FOUND! <center></font>");
     			   }
     		   }
     	   });
