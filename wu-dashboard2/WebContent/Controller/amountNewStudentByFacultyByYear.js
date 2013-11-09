@@ -1,8 +1,8 @@
+/* parameter control */
 var PrvYear = $("#embParamPrev").val();
-var paramYear = $(".yearSelected").val();
-$("label#titleYearSe").text(paramYear);
-/* ######################### Start generate code for newStudentComparebyMajoyByYear chart. ############################ */
+var paramYear = $("#embParamYear").val();
 
+/* ######################### Start generate code for newStudentComparebyMajoyByYear chart. ############################ */
 //Start: Generate newStudentComparebyMajoyByYear(Chart-01) By Kendo 	
 function newStudentComparebyMajoyByYear(objSeriesData,objCategoryData) {
 	$("#newStudentComparebyMajoyByYear").kendoChart({
