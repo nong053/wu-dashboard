@@ -32,6 +32,9 @@ var createThailandMap = function(objColorData, fnParamYear){
 			var provinceid = code.substring(3);
 			dataGridProvinceFn(fnParamYear, provinceid);
 			
+			$("input#t4Param").val(provinceid);
+	    	$("input#t4Param").addClass("active");
+			
 	    }
 	});
 };

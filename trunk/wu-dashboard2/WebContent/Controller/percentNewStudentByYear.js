@@ -61,6 +61,9 @@ function percentCompareByFacultyChart(fucultyId, fucultyName, values, amtStudent
 		$(".asOfMajor").text(fucultyName);
 
 		percentCompareByMajorFn(fucultyId);	
+		
+		$("input#t3Param").val(fucultyId+"-"+fucultyName);
+    	$("input#t3Param").addClass("active");
 	});
 	
 }
