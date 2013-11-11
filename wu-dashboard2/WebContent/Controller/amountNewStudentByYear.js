@@ -57,9 +57,9 @@ function newStudentByYearChart(objCateData,objSeriesColumnData,objSeriesLineData
             template: "ปี #= category #, #= value # คน",
         },
         seriesClick:function(e){
-//        	$("select#paramYear option").removeAttr("selected");
-//        	$("select#paramYear option[value="+e.category+"]").attr("selected","selected");
-//        	$("select#paramYear option").val(e.category);
+        	$("select#paramYear option").removeAttr("selected");
+        	$("select#paramYear option[value="+e.category+"]").attr("selected","selected");
+        	$("#paramYearList span.k-dropdown span.k-dropdown-wrap span.k-input").text(e.category);
         	
         	/* Change parameter value (paramYear) */
         	$("#embParamYear").val(e.category);
