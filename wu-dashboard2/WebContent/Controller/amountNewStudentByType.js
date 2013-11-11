@@ -83,6 +83,11 @@ function newStudentByType(objSeriesFirst, objSeriesSecond, objSeriesThird, objCa
 			
 			avgGpaByfacuByYearFn(e.series.name2, e.category.substring(0,2));
 			amountNewStudentByMajorFn(e.series.name2,e.category.substring(0,2));
+			
+			$("input#t2Param01").val(e.series.name2);
+			$("input#t2Param02").val(e.category);
+        	$("input#t2Param01").addClass("active");
+        	$("input#t2Param02").addClass("active");
 						
 		}
 		
@@ -287,8 +292,8 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
     					   sumAtmStudent += (parseInt(indexEntry[2]));
     				   });
 
-    				   var color = ["#357EC7","#C38EC7","#438D80","#437C17","#FBB117","#990012","#E8ADAA","#C38EC7","#FFF380"];
-    				   var indexColor = 1;
+    				   var color = ["#357EC7","#C38EC7","#438D80","#437C17",
+    				                "#FBB117","#990012","#E8ADAA","#C38EC7","#FFF380"];
     				   var dataCloumn = "";
         			   dataCloumn = "[";
         			   
@@ -297,13 +302,13 @@ var avgGpaByfacuByYearFn = function(TypeId, facuId){
         					   dataCloumn+="{";
         					   dataCloumn+="category:"+"\""+indexEntry[1]+"/"+(indexEntry[2])+" คน\",";
         					   dataCloumn+="value:"+""+((parseFloat(indexEntry[2])/sumAtmStudent)*100).toFixed(2)+",";
-        					   dataCloumn+="color:"+"\""+color[0]+"\"";
+        					   dataCloumn+="color:"+"\""+color[index]+"\"";
         					   dataCloumn+="}";
         				   }else{
         					   dataCloumn+=",{";
         					   dataCloumn+="category:"+"\""+indexEntry[1]+"/"+(indexEntry[2])+" คน\",";
         					   dataCloumn+="value:"+""+((parseFloat(indexEntry[2])/sumAtmStudent)*100).toFixed(2)+",";
-        					   dataCloumn+="color:"+"\""+color[indexColor++]+"\"";
+        					   dataCloumn+="color:"+"\""+color[index]+"\"";
         					   dataCloumn+="}";
         				   }
         			   });

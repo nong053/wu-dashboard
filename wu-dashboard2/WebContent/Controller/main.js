@@ -1,4 +1,4 @@
-/* START : Create function add commas() to use value in grid table */
+	/* Create function add commas() to use value in grid table */
 	function addCommas(nStr){
 		nStr += '';
 		x = nStr.split('.');
@@ -10,9 +10,15 @@
 		}
 		return x1 + x2;
 	};
-
 	
 $(document).ready(function(){
+	
+	var addClassAsOfTabs = function(childNo){
+		$("div#tabs ul").each(function(){
+			$("li",this).removeClass("TabsActive");
+			$("li",this).eq(childNo).addClass("TabsActive");
+		});
+	};addClassAsOfTabs(0);
 	
 	/* Generate jquery Button style. */
 	$("#btnSubmit").button();
@@ -23,6 +29,7 @@ $(document).ready(function(){
 	
 /* ############################# START: Event Click Tabs-1  ############################# */
 	$("[href='#tabs-1']").click(function(){
+		addClassAsOfTabs(0);
 		$.ajax({
 			url:"amountNewStudentByYear.html",
 			type:"get",
@@ -78,11 +85,37 @@ $(document).ready(function(){
             		}
             	});
 					/* END: Create newStudentByYearChart*/	
+				
+				/* Display topTenHighSchool Chart */
 				$("#panelL-Page1").show();
 				$("label.asOfYear").text($("#embParamYear").val());
 				topTenHighSchoolByYearFn($("#embParamYear").val(),$("#selectTop").val());
+								
+				/* Display newStudentByYearByFaculty Chart and newStudentByYearByFacultyByMajor Chart */
+				if($("input#t1Chart03").hasClass("active")){false;}else{
+					if($("input#t1Chart03").hasClass("cerated")){false;}else{
+						$("body").append("<input type=\"hidden\" id=\"t1Chart03\" class=\"cerated\" value=\"noparam\">");}}		
+				if($("input#t1Chart04").hasClass("active")){false;}else{
+					if($("input#t1Chart04").hasClass("cerated")){false;}
+					else{$("body").append("<input type=\"hidden\" id=\"t1Chart04\" class=\"cerated\" value=\"noparam\">");}}
 				
-				}
+				var t1Chart03 = $("input#t1Chart03").val();
+				var t1Chart04 = $("input#t1Chart04").val();
+				if(t1Chart03 != "noparam"){
+		        	$("#centerContent").show();
+		        	$(".titleCompareFaculty").show();
+					newStudentByYearByFacultyFn($("#embParamYear").val());	
+				}else{ false; }
+				
+				if(t1Chart04 != "noparam"){
+					$("#buttomContent").show();
+		        	$(".titleCompareMajor").show();
+		        	$("label.asOfFaculty").text(t1Chart04.substring(0,t1Chart04.indexOf("/")));
+		        	$("#newStudentByYearByFacultyByMajorChart").show();
+		        	newStudentByYearByFacultyByMajorFn($("#embParamYear").val(),t1Chart04.substring(t1Chart04.indexOf("/")+1));
+				}else{ false; }
+				
+			}		
 		});
 	});
 /* ############################# END: Event Click Tabs-1 ############################# */
@@ -91,6 +124,7 @@ $(document).ready(function(){
 		
 /* ############################# START: Event Click Tabs-2  ############################# */
 	$("[href='#tabs-2']").click(function(){
+		addClassAsOfTabs(1);
 		$.ajax({
 			url:"amountNewStudentByType.html",
 			type:"get",
@@ -100,7 +134,30 @@ $(document).ready(function(){
 				$(".style").remove();
 				$("#tabs-2").html(data);
 					
-				amountNewStudentByTypeFn();				
+				amountNewStudentByTypeFn();	
+				
+				/* *** */
+				if($("input#t2Param01").hasClass("active") && $("input#t2Param02").hasClass("active")){false;}else{
+					if($("input#t2Param01").hasClass("cerated") && $("input#t2Param02").hasClass("cerated")){false;}else{
+						$("body").append("<input type=\"hidden\" id=\"t2Param01\" class=\"cerated\" value=\"noparam\">");
+						$("body").append("<input type=\"hidden\" id=\"t2Param02\" class=\"cerated\" value=\"noparam\">");
+				}}
+				
+				var seriesName = $("input#t2Param01").val();
+				var category = $("input#t2Param02").val();
+				if(seriesName != "noparam" && category != "noparam"){
+					$("div#buttomContent").show();
+					$(".panel").show();
+					$(".panelChartTitle").show();
+					
+					/* ChartTitle */
+					$("label.asOfYear").text(paramYear);
+					$("label.asOfType").text(seriesName);
+					$("label.asOfMajor").text(category.substring(category.indexOf("-")+1));
+					
+					avgGpaByfacuByYearFn(seriesName, category.substring(0,2));
+					amountNewStudentByMajorFn(seriesName, category.substring(0,2));
+				}else{ false; }
 			}
 		});
 	});
@@ -110,6 +167,7 @@ $(document).ready(function(){
 		
 /* ############################# START: Event Click Tabs-3  ############################# */
 	$("[href='#tabs-3']").click(function(){
+		addClassAsOfTabs(2);
 		$.ajax({
 			url:"percentNewStudentByYear.html",
 			type:"get",
@@ -120,6 +178,22 @@ $(document).ready(function(){
 				$("#tabs-3").html(data);
 					
 				percentCompareByFacultyFn();
+				
+				/* *** */
+				if($("input#t3Param").hasClass("active")){false;}else{
+					if($("input#t3Param").hasClass("cerated")){false;}
+					else{$("body").append("<input type=\"hidden\" id=\"t3Param\" class=\"cerated\" value=\"t3Param\">");}}
+				
+				var fuculty = $("input#t3Param").val();
+				if(fuculty != "t3Param"){
+					$("#bottomContent").show();
+					$(".bottomTitleChart").show();
+					$(".legend-2").show();
+					$(".asOfMajor").text(fuculty.substring(fuculty.indexOf("-")+1));
+
+					percentCompareByMajorFn(fuculty.substring(0,fuculty.indexOf("-")));
+				}else{ false; }
+				
 			}
 		});
 	});
@@ -129,6 +203,7 @@ $(document).ready(function(){
 		
 /* ############################# START: Event Click Tabs-4  ############################# */
 	$("[href='#tabs-4']").click(function(){
+		addClassAsOfTabs(3);
 		$.ajax({
 			url:"amountNewStudentByRegion.html",
 			type:"get",
@@ -138,16 +213,27 @@ $(document).ready(function(){
 				$(".style").remove();
 				$("#tabs-4").html(data);
 				
-				changeMapColor(parseInt($("#embParamYear").val()));
-				dataGridProvinceFn(parseInt($("#embParamYear").val()),0);
+				/* *** */
+				if($("input#t4Param").hasClass("active")){false;}else{
+					if($("input#t4Param").hasClass("cerated")){false;}
+					else{$("body").append("<input type=\"hidden\" id=\"t4Param\" class=\"cerated\" value=\"t4Param\">");}}
 				
-				$("#provinceNameHi").remove();
-				$("#provinceNameTitle").html("<b>ทุกจังหวัด</b>");
-				
-				$(".k-grid-header-wrap table thead tr").each(function(){
-					$("tr:nth-child(2) th:nth-child(2)").text("จังหวัด");
-					$("tr:nth-child(2) th:nth-child(2)").css({"text-align":"center", "font-weight":"bold"});
-				});
+				var province = $("input#t4Param").val();
+				if(province == "t4Param"){
+					changeMapColor(parseInt($("#embParamYear").val()));
+					dataGridProvinceFn(parseInt($("#embParamYear").val()),0);
+					
+					$("#provinceNameHi").remove();
+					$("#provinceNameTitle").html("<b>ทุกจังหวัด</b>");
+					
+					$(".k-grid-header-wrap table thead tr").each(function(){
+						$("tr:nth-child(2) th:nth-child(2)").text("จังหวัด");
+						$("tr:nth-child(2) th:nth-child(2)").css({"text-align":"center", "font-weight":"bold"});
+					});
+				}else{ 
+					changeMapColor(parseInt($("#embParamYear").val()));
+					dataGridProvinceFn(parseInt($("#embParamYear").val()),province);
+				}
 
 			}
 		});
@@ -158,6 +244,7 @@ $(document).ready(function(){
 		
 /* ############################# START: Event Click Tabs-5  ############################# */
 	$("[href='#tabs-5']").click(function(){
+		addClassAsOfTabs(4);
 		$.ajax({
 			url:"amountNewStudentByFacultyByYear.html",
 			type:"get",
@@ -227,9 +314,27 @@ $(document).ready(function(){
 	/* START: function call model for newStudentByYearChart */	
 		$("form#formAction").submit(function(){			
 			$(".empParam").remove();
-			$("body").append("<input type=\"text\" id=\"embParamPrev\" name=\"embParamPrev\" class=\"empParam\" value="+$("#paramPrev").val()+">");
-			$("body").append("<input type=\"text\" id=\"embParamYear\" name=\"embParamYear\" class=\"empParam\" value="+$("#paramYear").val()+">");
-			$("[href='#tabs-1']").trigger("click");
+			$("body").append("<input type=\"hidden\" id=\"embParamPrev\" name=\"embParamPrev\" class=\"empParam\" value="+$("#paramPrev").val()+">");
+			$("body").append("<input type=\"hidden\" id=\"embParamYear\" name=\"embParamYear\" class=\"empParam\" value="+$("#paramYear").val()+">");
+			
+			$("div#tabs ul").each(function(){
+				if($("li",this).eq(0).hasClass("TabsActive")){
+					$("[href='#tabs-1']").trigger("click");
+				}else if($("li",this).eq(1).hasClass("TabsActive")){
+					$("[href='#tabs-2']").trigger("click");
+				}else if($("li",this).eq(2).hasClass("TabsActive")){
+					$("[href='#tabs-3']").trigger("click");
+				}else if($("li",this).eq(3).hasClass("TabsActive")){
+					$("[href='#tabs-4']").trigger("click");
+				}else if($("li",this).eq(4).hasClass("TabsActive")){
+					$("[href='#tabs-5']").trigger("click");
+				}else{
+					false;
+				}
+			});
+			
+			
+			
 			return false;
 		}); //.trigger("submit");
 		

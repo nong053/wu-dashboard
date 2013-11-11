@@ -95,48 +95,54 @@ var chartComparingAtmNewStudentByFacultyFn = function(){
 		dataType: "json",
 		data: {"paramYear":paramYear},
 		success:function(data){
-		
+			
 			var seriesData = "";
 			var categoryData = "";
-			
+			var color = ["#006666","3CCFFCC","#99FF33","#33FFCC","#FFCC33",
+			             "#FF9900","#FF9999","#CC9900","#339999","#993399",
+			             "#990033","#330066","#D8F781","#7401DF","#04B486"];
 			seriesData += "[";
 			categoryData += "[";
         			
         	$.each(data,function(index,indexEntry){
         		/* Create category by period dating back. */
-        		/* PrvYear = 3 */
+        		/* In Case PrvYear = 3 */
         		if(PrvYear == 3){
         			if(index == 0){
             			seriesData += "{"+
             							"name:\""+indexEntry[1]+"\","+
             							"id:\""+indexEntry[0]+"\","+
-            							"data:["+indexEntry[2]+","+indexEntry[3]+","+indexEntry[4]+"]"+
+            							"data:["+indexEntry[2]+","+indexEntry[3]+","+indexEntry[4]+"],"+
+            							"color:\""+color[index]+"\"" +
             							"}";
             		}else{
             			seriesData += ",{"+
     									"name:\""+indexEntry[1]+"\","+
     									"id:\""+indexEntry[0]+"\","+
-    									"data:["+indexEntry[2]+","+indexEntry[3]+","+indexEntry[4]+"]"+
+    									"data:["+indexEntry[2]+","+indexEntry[3]+","+indexEntry[4]+"],"+
+    									"color:\""+color[index]+"\"" +
     									"}";        			
             		} 
-        		/* PrvYear = 5 */
+        		/* In Case PrvYear = 5 */
         		}else if(PrvYear == 5){
         			if(index == 0){
             			seriesData += "{"+
             							"name:\""+indexEntry[1]+"\","+
             							"id:\""+indexEntry[0]+"\","+
             							"data:["+indexEntry[2]+","+indexEntry[3]+","+indexEntry[4]+","
-            									+indexEntry[5]+","+indexEntry[6]+"]"+
+            									+indexEntry[5]+","+indexEntry[6]+"],"+
+            							"color:\""+color[index]+"\"" +
             							"}";
             		}else{
             			seriesData += ",{"+
     									"name:\""+indexEntry[1]+"\","+
     									"id:\""+indexEntry[0]+"\","+
     									"data:["+indexEntry[2]+","+indexEntry[3]+","+indexEntry[4]+","
-    											+indexEntry[5]+","+indexEntry[6]+"]"+
+    											+indexEntry[5]+","+indexEntry[6]+"],"+
+    									"color:\""+color[index]+"\"" +
     									"}";        			
             		} 
-        		/* PrvYear = 10 */
+        		/* In Case PrvYear = 10 */
         		}else if(PrvYear == 10){
         			if(index == 0){
             			seriesData += "{"+
@@ -145,7 +151,8 @@ var chartComparingAtmNewStudentByFacultyFn = function(){
             							"data:["+indexEntry[2]+","+indexEntry[3]+","+indexEntry[4]+","
             									+indexEntry[5]+","+indexEntry[6]+","+indexEntry[7]+","
             									+indexEntry[8]+","+indexEntry[9]+","+indexEntry[10]+","
-		    									+indexEntry[11]+"]"+
+		    									+indexEntry[11]+"],"+
+		    							"color:\""+color[index]+"\"" +
             							"}";
             		}else{
             			seriesData += ",{"+
@@ -154,7 +161,8 @@ var chartComparingAtmNewStudentByFacultyFn = function(){
     									"data:["+indexEntry[2]+","+indexEntry[3]+","+indexEntry[4]+","
 		    									+indexEntry[5]+","+indexEntry[6]+","+indexEntry[7]+","
 		    									+indexEntry[8]+","+indexEntry[9]+","+indexEntry[10]+","
-		    									+indexEntry[11]+"]"+
+		    									+indexEntry[11]+"],"+
+		    							"color:\""+color[index]+"\"" +
     									"}";        			
             		} 
         		}     		
@@ -177,7 +185,7 @@ var chartComparingAtmNewStudentByFacultyFn = function(){
 
         	var objSeriesData = eval("("+seriesData+")");
         	var objCategoryData = eval("("+categoryData+")");
-//        	console.log(objCategoryData);   
+        	console.log(objSeriesData);   
 //        	newStudentComparebyMajoyByYear(objSeriesData,objCategoryData);
         	$(document).ready(newStudentComparebyMajoyByYear(objSeriesData,objCategoryData));
             $(document).bind("kendo:skinChange", newStudentComparebyMajoyByYear(objSeriesData,objCategoryData));
